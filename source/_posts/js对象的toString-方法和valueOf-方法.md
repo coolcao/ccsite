@@ -1,6 +1,6 @@
 ---
 title: js对象的toString()方法和valueOf()方法
-date: 2016-10-17 22:43:00
+date: 2016-08-19 22:43:00
 tags: [js]
 ---
 

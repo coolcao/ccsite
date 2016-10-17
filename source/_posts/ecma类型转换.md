@@ -1,6 +1,6 @@
 ---
 title: ecmasrcipt类型转换
-date: 2016-10-17 21:57:03
+date: 2016-08-12 21:57:03
 tags: [js,ecmasrcipt]
 ---
 

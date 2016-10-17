@@ -4,9 +4,10 @@
 
 # Site
 title: coolcao的小站
-subtitle:
-description: coolcao的code点滴
+subtitle: coolcao的code点滴
+description: 欢迎来到coolcao的小站，在这里，我会分享一些我的编程及生活
 author: coolcao
+email: me@coolcao.com
 language: zh-Hans
 timezone:
 
@@ -66,6 +67,15 @@ pagination_dir: page
 ##theme: landscape
 #theme: next
 theme: yilia
+
+#RSS订阅
+plugin:
+        - hexo-generator-feed
+feed:
+        type: atom
+        path: atom.xml
+        limit: 20
+        hub:
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

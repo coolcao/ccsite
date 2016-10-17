@@ -8,10 +8,10 @@ menu:
 subnav:
   github: "https://github.com/coolcao"
   weibo: "http://weibo.com/1946282212"
-  #rss: "#"
+  rss: "/atom.xml"
   #zhihu: "#"
   #douban: "#"
-  mail: "me@coolcao.com"
+  #mail: ""
   #facebook: "#"
   #google: "#"
   #twitter: "#"
@@ -37,7 +37,7 @@ open_in_new: false
 
 # Miscellaneous
 google_analytics: ''
-favicon: /favicon.png
+favicon: /favicon.ico
 
 #你的头像url
 avatar: http://7xt3oh.com2.z0.glb.clouddn.com/CC2.png

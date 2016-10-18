@@ -5,7 +5,8 @@
 # Site
 title: coolcao的小站
 subtitle: coolcao的code点滴
-description: 欢迎来到coolcao的小站，在这里，我会分享一些我的编程及生活
+#description: 欢迎来到coolcao的小站，在这里，我会分享一些我的编程及生活
+description: coolcao的code点滴
 author: coolcao
 email: me@coolcao.com
 language: zh-Hans
@@ -65,8 +66,8 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 ##theme: landscape
-#theme: next
-theme: yilia
+theme: next
+##theme: yilia
 
 #RSS订阅
 plugin:

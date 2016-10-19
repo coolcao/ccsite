@@ -2,6 +2,7 @@
 title: js对象的toString()方法和valueOf()方法
 date: 2016-08-19 22:43:00
 tags: [js]
+categories: 技术博客
 ---
 
 在研究js的==和===的区别时，曾经说过，在js中非原始值对象，要参加运算需要ToPrimitive(x)转换成原始值类型。
@@ -212,7 +213,7 @@ Object.prototype.toString.call(function(){});   //'[object Function]'
 2. Let func be ? Get(array, "join").
 3. If IsCallable(func) is false, let func be the intrinsic function %ObjProto_toString%.
 4. Return ? Call(func, array).
- 
+
 >**NOTE** The toString function is intentionally generic; it does not require that its this value be an Array object. Therefore it can be transferred to other kinds of objects for use as a method.
 
 从说明中我们看以看出，数组的toString()实现步骤是，先将数组ToObject()转换成包装类对象，这里由于数组本身就是包装类，因此这里返回的是数组本身。
@@ -251,4 +252,3 @@ array = ToObject(this)这里array即是数组本身。
 
 所以，只要看明白ecma规范中对于各个方法的说明，是很容易理解的。
 所以，像Boolean,Function等等的toString()方法的实现说明，看ecma的说明就好了，多说无益。这里就不再往上抄了，也不做记录了。
-

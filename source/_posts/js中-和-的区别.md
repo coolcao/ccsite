@@ -190,7 +190,7 @@ true or false. Such a comparison is performed as follows:
     * 其他返回false
 
 
-## ToPrimitive() 方法
+### ToPrimitive() 方法
 转换成原始类型方法。
 js中的原始类型：
 * Null: null值.

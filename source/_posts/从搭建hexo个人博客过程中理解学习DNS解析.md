@@ -9,6 +9,38 @@ categories: 技术博客
 
 <!-- more -->
 
+## DNS基础知识
+### DNS(domain name system)
+* 从概念上来说，Internet被分成200多个顶级域，每个域名有多个主机。顶级域有两种：`通用域`和`国家域`。
+* 域名不区分大小写
+### 资源记录
+每个域都可以有一组与它相关联的资源记录。对于一台主机来说，最常见的资源记录就是他的IP地址，但除此之外，还存在许多其他种类的资源记录。因此DNS的基本功能是`将域名映射到资源记录上`。
+
+资源记录是一个五元组，使用如下格式：
+```
+Domain_name(域名) Time_to_live(生存周期) Class(类别) Type(类型) Value(值)
+```
+Type(类型)指出了这是什么类型的记录。
+|类型|含义|值|
+|----|----|----|
+|SOA|授权的开始|本区域的参数|
+|A|一台主机的IP地址|32位整数|
+|MX|邮件交换|优先级，希望接受该域电子邮件的机器|
+|NS|名字服务器|本域的服务器名称|
+|CNAME|规范名|域名|
+|PTR|指针|一个IP地址的别名|
+|HINFO|主机的描述|用ASCII表示的CPU和操作系统|
+|TXT|文本|未解释的ASCII文本|
+
+* 最重要的是A(Address，地址)记录，他包含了某一台主机的32位IP地址，每台Internet主机必须有一个IP地址，以便其他机器能与他进行通信。
+* 其次最重要的记录类型是MX记录，他也指定一台主机的名字，该主机将为这个特定的域接受电子邮件。之所以使用MX记录，是因为并非每台机器都做好了接受电子邮件的准备。
+* NS记录指定名字服务器。
+* CNAME记录允许创建别名。例如，如果一个人很熟悉Internet的常规命名规则，他打算给MIT计算机科学西的一个人发送一个消息，而且他只知道此人的登录名为paul，那么，他可能猜测此人的邮件地址是paul@cs.mit.edu。事实上这个地址并不正常，因为MIT计算机科学系的域是lcs.mit.edu。但是，MIT可以创建一条CNAME记录，以便为那些不知情的人和程序指引到正确的方向上，这也算是为他们提供一项服务吧。
+* 与CNAME一样，PTR也指向了另一个名字。但是CNAME只是一个宏定义，而PTR与CNAME不同，它是一种正规的DNS数据类型，他的确切含义要取决于他所在的上下文。在实践中，PTR几乎总是被用来将一个名字与一个IP地址关联起来，以便能够查找IP地址并返回对应机器的名字，这种功能被称为反向查找（reverse lookups）
+* HINFO 记录允许人们找到一个域对应于哪种操作机器和操作系统。
+* TXT 记录，每个域可以按照任意的方式来标识自己。
+* Value域，他的值可以是数字，域名或者ASCII字符串，其语义取决于记录的类型。
+
 ## DNS域名称类型
 |名称类型|说明|示例|
 |----|----|----|
@@ -49,10 +81,33 @@ LDNS域名服务器会缓存这个域名和ip的对应关系，并将结果返�
 
 ## hexo绑定域名过程
 ### 阿里云DNS解析
-由于，我的域名是在万网买的，直接使用的万网的域名解析。
-我的域名 `coolcao.com`的相关信息：
-![域名信息](http://7xt3oh.com2.z0.glb.clouddn.com/blog/coolcao_dns_server.png)
 
-在万网的域名解析里面添加如下一条记录
-![域名解析](http://7xt3oh.com2.z0.glb.clouddn.com/blog/coolcao_dns.png)
-这里有记录值及TTL值等，请注意，这里的记录值是我在github上的静态页面地址，因此，当我访问我的域名 coolcao.com时，先由万网的 Name Server解析到github，然后由经github域名服务器再解析，至少有两层的Name Server进行解析。
+在阿里云解析域名的时候还遇到了小问题呢，一一记录下，也算是学习过程吧。
+
+#### CNAME的@记录和MX的@记录不能共存
+由于我的域名coolcao.com开通的时候，自动开通了企业邮箱，因此，在域名解析那里，阿里云自动生成了几条和邮件相关的解析记录，如下图：
+![阿里云域名解析](http://7xt3oh.com2.z0.glb.clouddn.com/blog/aliyun_dns_o.png)
+从上图中可以看出，由于开通了企业邮箱，默认开启5条记录，两条不同优先级的MX记录，三条CNAME记录，当我添加解析到我的github pages的记录时报错了：
+![MX和CNAME冲突](http://7xt3oh.com2.z0.glb.clouddn.com/blog/conflict_mx_cname.png)
+点开冲突记录规则，有如下规则：
+![冲突记录规则](http://7xt3oh.com2.z0.glb.clouddn.com/blog/dns_rules.png)
+也就是说，MX记录和CNAME在主机记录为 `@`时不能共存，那该怎么办，企业邮箱和www站不能同时解析拥有么？
+当然不是，经过上网查找资料，大致有下面两个办法：
+* 采用Link类型解析
+首先添加一条CNAME类型的www记录，解析到github pages地址。
+![www解析](http://7xt3oh.com2.z0.glb.clouddn.com/blog/dns_www.png)
+然后再添加一条Link类型的@解析，这里解析到带www的完整地址，这里我的是：`www.coolcao.com`
+但这里有个要求，是域名必须要经过备案，即`coolcao.com`要必须备案，才能添加。由于我的还未备案，无从验证实验结果。如果有备案的，可以验证一下是否有效。
+* 采用A类型解析
+我的域名没有备案，因此用不了Link类型，可以采用A类型解析。
+首先使用ping命令看一下自己的github pages的IP是多少。我这里查到的是：`151.101.100.133`,因此添加如下记录：
+![A记录解析](http://7xt3oh.com2.z0.glb.clouddn.com/blog/dns_a.png)
+同时添加一条CNAME类型的www解析，这样，可以通过`coolcao.com`或`www.coolcao.com`都能访问到我的小站。
+*但这种方式也有个问题，如果github的IP地址变化了的话，得需要再改变A记录的值，可以说是一种不稳定的因素吧。但是域名没备案，没办法的办法。*
+
+#### github pages项目下为什么还要添加CNAME文件
+最开始，在设置未开通邮箱服务的愉快绑定时，很简单，直接添加了两条CNAME记录，一条`@`，一条`www`两条均解析到了`coolcao.github.io`
+那时候还一直在想，为什么要在项目里添加CNAME文件呢？
+我直接访问`coolcao.github.io`直接访问到我的github pages主页，那么，我将我的域名`coolcao.com`通过CNAME解析到`coolcao.github.io`不就可以了么，但是结果却是，github提示找不到页面。
+当资料整理到这里，我才慢慢理解了原因：
+所有的DNS解析最终都是将域名解析成IP，如果直接使用A记录直接解析到github的ip的话，在github上有成千上万的pages项目，那么，当你输入`coolcao.com`时，github怎么知道你的项目在哪里呢？这就是项目里CNAME文件的用处，把你的域名和项目进行绑定，当你访问`coolcao.com`，DNS解析到github的IP时，由于请求头中会带有`coolcao.com`，github通过CNAME的绑定，查询到了你具体的项目，才能正确找到你的项目。

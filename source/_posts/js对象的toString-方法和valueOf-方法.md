@@ -2,7 +2,9 @@
 title: js对象的toString()方法和valueOf()方法
 date: 2016-08-19 22:43:00
 tags: [js]
-categories: 技术博客
+categories: 
+- 技术博客
+- 原创
 ---
 
 在研究js的==和===的区别时，曾经说过，在js中非原始值对象，要参加运算需要ToPrimitive(x)转换成原始值类型。

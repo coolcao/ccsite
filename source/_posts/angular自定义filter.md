@@ -2,7 +2,9 @@
 title: angular自定义filter
 date: 2016-02-05 20:01:53
 tags: [angular,angularjs,前端]
-categories: 技术博客
+categories: 
+- 技术博客
+- 原创
 ---
 
 > angular除了几个自带的常用的filter,还可以自定义filter,以满足不同的需求，简单研究了一下自定义filter，记录一下。

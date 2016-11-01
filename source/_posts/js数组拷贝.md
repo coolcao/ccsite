@@ -2,7 +2,9 @@
 title: js数组拷贝
 date: 2016-10-30 23:14:52
 tags: [js,Array]
-categories: 技术博客
+categories: 
+- 技术博客
+- 原创
 ---
 
 利用js原生已实现的方法，我们就可以不用自己写循环实现数组的拷贝复制。

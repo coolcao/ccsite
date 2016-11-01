@@ -2,7 +2,9 @@
 title: FiddlerScript学习一：修改Request或Response
 date: 2014-09-26 16:04:26
 tags: [fiddle,调试,web开发]
-categories: 技术博客
+categories: 
+- 技术博客
+- 原创
 ---
 
 前两天因项目需要，简单看了一下FiddlerScript，功能挺强的，今天有时间仔细看一下，做个笔记。

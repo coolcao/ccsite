@@ -2,7 +2,9 @@
 title: gulp顺序执行任务
 date: 2015-08-31 23:41:14
 tags: [gulp]
-categories: 技术博客
+categories: 
+- 技术博客
+- 原创
 ---
 
 在gulp中定义多个任务，可能一个任务要依赖其他某个任务完全结束后才能开始进行，比如，我们先定义两个任务，一个coffee任务，一个clean任务，coffee用于编译coffee代码到js代码，clean用于清理已经编译的代码，在编译之前先clean一下：

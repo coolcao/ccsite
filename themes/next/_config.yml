@@ -181,11 +181,14 @@ sidebar:
 # Blogrolls
 links_title: 友情链接
 links_layout: block
-#links_layout: inline
+# links_layout: inline
 links:
-  Hexo: https://hexo.io/
-  Next: https://github.com/iissnan/hexo-theme-next
-
+  Node地下铁: http://www.nodejs.club/
+  淘宝FED: http://taobaofed.org/
+  奇舞团: http://www.75team.com/
+  凹凸实验室: https://aotu.io/index.html
+  百度FEX: http://fex.baidu.com/
+  腾讯Alloy: http://www.alloyteam.com/
 
 # ---------------------------------------------------------------
 # Misc Theme Settings

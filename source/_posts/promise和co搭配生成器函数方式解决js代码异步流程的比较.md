@@ -2,7 +2,9 @@
 title: promise和co搭配生成器函数方式解决js代码异步流程的比较
 date: 2016-07-24 18:50:59
 tags: [js,es6]
-categories: 技术博客
+categories: 
+- 技术博客
+- 原创
 ---
 
 在es6中引入的原生Promise为js的异步回调问题带来了一个新的解决方式，而TJ大神写的co模块搭配Generator函数的同步写法，更是将js的异步回调带了更优雅的写法。

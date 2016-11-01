@@ -2,7 +2,9 @@
 title: ecmasrcipt类型转换
 date: 2016-08-12 21:57:03
 tags: [js,ecmasrcipt]
-categories: 技术博客
+categories: 
+- 技术博客
+- 原创
 ---
 
 之前写了一篇 [《js中==和===的区别.md》](https://coolcao.github.io/2016/10/17/js%E4%B8%AD-%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB/)，其中提到了 `ToPrimitive()`，转换为原始类型的方法。这个方法中，其实也引用到了其他的类型转换，比如，`ToBoolean()`转换为Boolean类型，`ToNumber()`转换为数字类型等等，但是这些方法具体是怎么执行的，并未做说明，今天就看看ecma中对类型转换的几个方法的说明。

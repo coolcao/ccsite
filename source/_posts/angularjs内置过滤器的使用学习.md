@@ -2,7 +2,9 @@
 title: angularjs内置过滤器的使用学习
 date: 2015-02-05 18:48:36
 tags: [angular,angularjs,前端]
-categories: 技术博客
+categories: 
+- 技术博客
+- 原创
 ---
 
 在angular中内置了几个常用的filter,可以简化我们的操作。

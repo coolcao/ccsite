@@ -2,7 +2,9 @@
 title: es6中promise的研究
 date: 2016-08-16 22:38:51
 tags: [es6,js]
-categories: 技术博客
+categories: 
+- 技术博客
+- 原创
 ---
 
 学习了es6有一段时间了，对promise的概念也有一定的了解，起先觉得概念上挺简单的，但是在实际操作中却发现，用起来却没那么顺利。

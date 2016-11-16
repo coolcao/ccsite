@@ -1,5 +1,5 @@
 ---
-title: Six-Tiny-But-Awesome-ES6-Features
+title: ES6中6个小的却令人惊叹的特性
 date: 2016-11-16 22:04:20
 tags: [js,es6]
 categories:
@@ -117,3 +117,24 @@ function greet(name, callback = function(){}) {}
 其他编程语言中，如果没有为参数提供默认值，可能会抛出警告，但是在javascript里，它会继续运行，并且将这些参数的值设置为`undefined`。
 
 我这里所列出的6个特性，只是es6提供给开发者的很小的一部分，但确实我们可能想都不想就经常用的。这些微小的补充，往往不会得到注意，但却成了我们编码的核心。
+
+## 讨论
+### [cmwd](http://cmwd.github.io):对于默认参数，我经常用以下小技巧：
+```javascript
+const isRequired = () => { throw new Error('param is required'); };
+
+const hello = (name = isRequired()) => { console.log(`hello ${name}`) }
+```
+
+#### [Dimitar](http://fragged.org):+1,不过为了更好的可读性，使用 getter 比 ()更好：
+```javascript
+const is = {
+  get required(){
+    throw new Error('Required argument')
+  }
+}
+
+import { is } from 'utils'
+
+const foo(name = is.required)=>Array.from(name)
+```

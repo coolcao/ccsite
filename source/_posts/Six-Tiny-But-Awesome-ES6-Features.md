@@ -138,3 +138,5 @@ import { is } from 'utils'
 
 const foo(name = is.required)=>Array.from(name)
 ```
+
+英文原文链接：[Six Tiny But Awesome ES6 Features](https://davidwalsh.name/es6-features)

@@ -89,3 +89,69 @@ for (let i = 1; i <= 5; i++) {
 }
 ```
 for循环头部的let声明还会有一个特殊的行为，这个行为指出**变量在循环的过程中不止被声明一次，每次迭代都会声明，随后的每个迭代都会使用上一个迭代结束时的值来初始化这个变量**。
+
+## 模块
+还有其他的代码模式使用闭包的强大威力，但从表面看，他们似乎与回调无关。下面研究下其中最强大的一个：**模块**
+```javascript
+function foo(){
+    var something = 'cool'
+    var another = [1,2,3]
+    function doSomething(){
+        console.log(something);
+    }
+    function doAnother(){
+        console.log(another.goin('!'));
+    }
+    return {
+        doSomething:doSomething,
+        doAnother:doAnother
+    }
+}
+```
+这个模式在Javascript中被称为模块，最常见的实现模块的方法通常被称为模块暴露。
+
+首先，CoolModule()只是一个函数，必须要通过调用它来创建一个实例。如果不执行外部函数，内部作用域和闭包都无法被创建。
+其次，CoolModule()返回一个用对象字面量语法来表示的对象。这个返回的对象中含有对内部函数而不是内部数据变量的引用。我们保持内部数据变量是隐藏且私有的状态。可以将这个对象类型的返回值看作本质是模块的公共API.
+
+> 从模块中返回一个实际的对象并不是必须的，也可以返回一个内部函数。jQuery就是一个例子。jQuery和$标识符就是jQuery模块的公共API，但他们本身都是函数。
+
+doSomething和doAnother函数具有涵盖模块实例内部作用域的闭包（通过调用CoolModule实现）。当通过返回一个含有属性引用的对象的方式来将函数传递到词法作用域外部时，我们已经创造了可以观察和实践闭包的条件。
+如果要更简单的描述，模块模式需要具备两个必要条件：
+* 必须有外部的封闭函数，该函数必须至少被调用一次（每次调用都会创建一个新的模块实例）
+* 封闭函数必须返回至少一个内部函数，这样内部函数才能在私有作用域中形成闭包，并且可以访问或者修改私有的状态。
+
+模块模式的另一个简单但强大的用法是命名将要作为公共API返回的对象：
+```js
+
+var foo = (function CoolModule(id) {
+    function change() {
+        // 修改公共API
+        publicAPI.identify = identify2;
+    }
+
+    function identify1() {
+        console.log(id);
+    }
+
+    function identify2() {
+        console.log(id.toUpperCase());”
+
+        “
+    }
+
+
+    var publicAPI = {
+        change: change,
+        identify: identify1
+    };
+
+    return publicAPI;
+})("foo module");
+
+foo.identify(); // foo module
+foo.change();
+foo.identify(); // FOO MODULE”
+
+```
+
+通过在模块实例的内部保留对公共API对象的内部调用，可以从内部对模块实例进行修改，包括添加或删除方法和属性，以及修改他们的值。

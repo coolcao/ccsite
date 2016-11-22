@@ -16,6 +16,8 @@ categories:
 * object
 * symbol
 
+<!--more-->
+
 > typeof null 返回的是object,这只是一个语言本身的一个bug,在Javascript中二进制前三位都是0的话会被判断为object类型，null的二进制表示是全0，自然前三位也是0，所以执行typeof时会返回“object”
 
 ## 内置对象

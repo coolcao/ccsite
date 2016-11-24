@@ -46,6 +46,7 @@ categories:
 进行异或运算`^`，我们得到的是从高位到低位一律为1的二进制数。
 进行与运算`&`,我们得到的是0。
 好了，我们可以根据这两条规律，编写相应的方法了。
+
 ```js
 //使用异或运算
 const is2power = function is2bit(num) {
@@ -63,6 +64,7 @@ const is2power = function is2bit(num) {
 > *实现一个方法，计算出一个正整数转换成二进制后的数字'1'的个数，比如，3的二进制为11,1的个数为2。要求性能尽可能高。*
 
 首先想到的，就是转换成二进制，然后循环计算：
+
 ```js
 const countOneOfBit = function countOneOfBit(num){
     let bs = num.toString(2);
@@ -79,18 +81,50 @@ const countOneOfBit = function countOneOfBit(num){
 当然，这里还是关于二进制的题目，我们再考虑考虑如何利用二进制位运算解决这个题目。
 在二进制中，如何判断一位是1，将此位和1做与`&`运算，如果结果是1，那就是1啦。
 那这个该如何解决这个题目呢？
+
 ```js
 const countOneOfBit = function countOneOfBit(num) {
     let count = 0;
-    for(let i=1;i<=num;i=i<<1){
-        if((num & i) === i){
+    while (num > 0) {
+        if(num & 1 === 1){
             count ++;
         }
+        num = num >> 1;
     }
     return count;
 }
 ```
 这里我将循环和二进制中每位进行&运算，如果遇到1，计数加1。
+上面这个还是存在浪费的情况，因为对每位都做了运算，不管是0还是1。
+按道理来讲，我们只需要拿出1的位，然后累加就好了。
+怎么讲？如何逐个拿出1呢？
+我们来看一下一个二进制：
+```
+10010
+```
+如何拿到最右边的1呢（倒数第二位），我们将这个数减1，得到：
+```
+10001
+```
+我们可以看到，从最右边的1那一位开始，到最高位所有位都没发生变化，只有后面的发生了变化，由于进位关系，原先1的那一位变成0，我们将两个数进行与`&`运算得到：
+```
+10000
+```
+这样就消除并拿到最右边的一位。因此，我们可以继续循环，直到num变为0,代码如下：
+
+```js
+const countOneOfBit = function countOneOfBit(num){
+    let count = 0;
+    for (count =0; num; ++c){
+        num &= (num -1) ; // 清除最低位的1
+    }
+    return count ;
+}
+```
+这种方法，循环的次数会比上面一种方法要少，因为这里只循环了位是1的次数。
+
+
+
 
 ## 计算数组中元素乘积
 
@@ -108,6 +142,7 @@ const countOneOfBit = function countOneOfBit(num) {
 那该怎么办呢？
 
 我们可以进行两遍循环（注意，不是两层），第一遍循环，求得当前元素左边的元素的乘积，第二遍循环，求得当前元素右边的乘积，然后将左右两边的乘积相乘，即可得到答案。
+
 ```js
 const productOfArrayExceptSelf = function productOfArrayExceptSelf(array){
     if(!Array.isArray(array)){

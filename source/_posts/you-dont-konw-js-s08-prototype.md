@@ -191,4 +191,79 @@ Foo.prototype.isPrototypeOf(a); //true
 Object.create()会创建一个新对象，并把它关联到我们指定的对象。
 > Object.create(null)会创建一个拥有空[[Prototype]]链接的对象，由于没有原型链，所以instanceof操作符无法进行判断，总是返回false。这些特殊的空[[Prototype]]对象通常被称作“字典”，他们完全不会受到原型链的干扰，因此非常适合用来存储数据。
 
+## 解惑 instanceof,isPrototypeOf,getPrototypeOf
+
+到现在为止，我们了解了原型及原型链，那么，对于`instanceof`,`isPrototypeOf()`，`Object.getPrototypeOf()`之间的区别，你都熟悉了么？
+我们现在就做实验，揭开它们之间的关系，理清它们剪不断，理还乱的关系。
+
+```js
+var Animal = function (name) {
+    this.name = name;
+    this.sayHi = function () {
+        console.log('hello,I\'m ' + this.name + ',and I\'m a ' + this.type);
+    }
+}
+
+var Dog = function (name) {
+    Animal.call(this,name);
+    this.type = 'dog';
+}
+
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+
+var dog = new Dog('biubiu');
+```
+
+对象原型关系图：
+
+![对象原型关系图](http://7xt3oh.com2.z0.glb.clouddn.com/instanceof_isprototypeof_getprototype.png)
+
+dog的原型链上依次是:Dog.prototype -> Animal.prototype
+
+这里我们定义了一个`Animal`的“基类”，然后定义了一个`Dog`“类”，然后通过原型链实现了所谓的“继承”。
+
+### instanceof
+
+下面思考如下的代码输出：
+
+```js
+console.log(dog instanceof Animal);   //true
+console.log(dog instanceof Dog);      //true
+```
+
+上面代码都输出了`true`，大家可能会说，这本来就是啊，有什么疑问么？可是，为什么呢？
+是因为*dog是由Dog类创建的一个实例，所以`dog instanceof Dog`肯定是true，而Dog类继承了Animal类，因此`dog instanceof Animal`当然也是true。*
+可能从类式面向对象语言的角度去分析，也没什么错对吧，但是，别忘了，javascript根本就不存在类，所谓的“继承”也是由原型链实现的。上面的解释，只能说是，*碰巧对了*。
+为什么呢？
+如果我们在`var dog = new Dog('biubiu');`这个语句后面，添加这么一句`Dog.prototype = {};`，也就是说，我们在实例化完dog对象后，立即改变Dog的原型对象，那么，`dog instanceof Dog`的结果是什么呢？
+毫无疑问，结果是`false`。所以，从这里可以看出，我们不能简单的将类式面向对象语言的角度来看待javascript中的对象及其原型。
+那么，`instanceof`到底怎么理解？
+当我们将`Dog.prototype = {}`时，从原型链图上我们可以看出，Dog.prototype就不在dog对象的原型链上了，所以返回的是false。而Animal.prototype还在dog对象的原型链上，因此，`dog instanceof Animal`还是会返回ture。
+
+因此，instanceof 可以理解为：**在dog的原型链中，是否存在指向Dog.prototype的对象**，左操作数是一个对象，右操作数是一个函数。
+
+### isPrototypeOf
+
+```js
+console.log(Dog.prototype.isPrototypeOf(dog));  //true
+console.log(Animal.prototype.isPrototypeOf(dog));   //true
+```
+
+很明显了，isPrototypeOf 用于判断一个对象是否在另一个对象的原型链上。注意，这里是**对象与对象之间的关系**。
+
+当我们执行 `Dog.prototype = {}`时，自然，`Dog.prototype.isPrototypeOf(dog)`也是false了。
+
+### Object.getPrototypeOf()
+
+```js
+console.log(Object.getPrototypeOf(dog) === Animal.prototype);  //false
+console.log(Object.getPrototypeOf(dog) === Dog.prototype);  //true
+```
+
+Object.getPrototypeOf()用于获取当前对象的原型对象，而不是原型链上所有对象，请注意。
+
+
+
+
 

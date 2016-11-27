@@ -130,3 +130,7 @@ s1.sayHi();
 但在理解上，把原型链理解为委托似乎更妥些。
 仁者见仁，智者见智。
 
+## 参考
+* 《你不知道的javascript》
+* [全面理解面向对象的 JavaScript](http://www.ibm.com/developerworks/cn/web/1304_zengyz_jsoo)
+* [拥抱原型面向对象编程](http://www.ibm.com/developerworks/cn/web/wa-protoop)

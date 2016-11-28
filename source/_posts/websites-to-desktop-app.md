@@ -12,6 +12,16 @@ nativefier是基于electron的，当然，你也可以直接使用electron打包
 
 <!--more-->
 
+## 安装node-icns（非必须，转换图标）
+```js
+npm install -g node-icns
+```
+
+## 转换图标
+```js
+nicns --in app-icon.png --out app-icon.icns
+```
+
 ## 安装nativefier
 nativefier是基于nodejs和electron的打包工具，安装nativefier之前请确保已安装nativefier和electron。
 ```js
@@ -28,4 +38,3 @@ nativefier --name 'ccsite' --icon ccsite.icns 'http://coolcao.com'
 打开应用看一下，其实就是electron架了个壳子。
 你可以根据具体的平台打包成相应的二进制包，linux,windows,mac随意。
 唯一不足的地方在于，这只能打包在线网站，如果想做本地应用，可以直接使用electron。
-

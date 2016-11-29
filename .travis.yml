@@ -5,6 +5,14 @@ branches:
   only:
   - master
 before_install:
+- openssl aes-256-cbc -K $encrypted_3649a89f32c4_key -iv $encrypted_3649a89f32c4_iv
+  -in id_rsa_travis.enc -out ~\/.ssh/id_rsa_travis -d
+- chmod 600 ~/.ssh/id_rsa_travis
+- eval $(ssh-agent)
+- ssh-add ~/.ssh/id_rsa_travis
+- cp .travis/ssh_config ~/.ssh/config
+- git config --global user.name "coolcao"
+- git config --global user.email "me@coolcao.com"
 - npm install -g hexo-cli
 install:
 - npm install
@@ -12,10 +20,4 @@ script:
 - hexo clean
 - hexo generate
 after_success:
-- git config --global user.name "coolcao"
-- git config --global user.email "me@coolcao.com"
-- sed -i'' "/^ *repo/s~github\.com~${GH_TOKEN}@github.com~" _config.yml
 - hexo deploy
-env:
-  global:
-    secure: TfW8ytQMK3bH0IH3rOjY0ZAG1LNC25cAG1DWr0LGv9euI6WQ3aAuhq58y603S/F64BlQu8rMRuToIONV+cDEHKnGQ68+cgj23xO6OgYoS/sGioo/zFnVrVC5/HKpZxc1Tfavi3kNvfCkaAzIqnZLBtj+Os/2fj/m+wi0OrJL47WJukCgdWLYpQLMU2MS9NF9WtyGKTJuBP3pq/Xt6UoGJbJqM4FU0HmTuNUC6vdFoJtXU2B4x1FKJ5ozi5St8DQE9vJafjMyZVWDdqqwhRrvcqVaKandIKq+1tw74rKQRoafyNTceeaZnojXZ9EgAkHVVl3EpcL4wTm/bcKqoHGrhId6HXUvEQohTRFtyxljCvyC+Gb2wc3kL9pXxoQJ7eeJdFHN8JXjHA+IivI9uxKePYcvMjYniSfuqVroQAJG528wqEicPtkZlPwcOZ1fN7JpwclqU8LFamkCkSgkt5utRswNJ1efQOXcE4mwD6iR+mTMINkZ5qYJwoBcZB0dlkJnwBKzvSKECybsPniy/eJGgOgNUoC7BalDRBG5mFzb4nG8cRKlsZ3ZmvwRp96ZOHB2cLBy2gjm9teFl13Lul+TQtTRv/w4/I1pnTawQBZEtqqtYlu1kIM4AdIBp8hsE62J7PDUNeZugeSzD6BctWzUKSSOv0pjOhBBEVPHQzPCJe0=

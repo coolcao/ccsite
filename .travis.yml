@@ -5,9 +5,19 @@ branches:
   only:
   - master
 before_install:
+- openssl aes-256-cbc -K $encrypted_3649a89f32c4_key -iv $encrypted_3649a89f32c4_iv
+  -in id_rsa_travis.enc -out ~\/.ssh/id_rsa_travis -d
+
+- chmod 755 ~/.ssh/id_rsa_travis
+- eval $(ssh-agent)
+- ssh-add ~/.ssh/id_rsa_travis
+- cp .travis/ssh_config ~/.ssh/config
+
+
 - git config --global user.name "coolcao"
 - git config --global user.email "me@coolcao.com"
-- sed -i'' "s~git@github.com:coolcao/coolcao.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/coolcao/coolcao.github.io.git~" _config.yml
+#- sed -i'' "s~git@github.com:coolcao/coolcao.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/coolcao/coolcao.github.io.git~"
+#  _config.yml
 - npm install -g hexo-cli
 install:
 - npm install
@@ -18,4 +28,4 @@ after_success:
 - hexo deploy
 env:
   global:
-    secure: vTj/cJwxbuiAeUB1DhXTqKBARSk6xjEWwyzFIQUSqIgHO0e339W37pqmU6Da/9aXWeyGNv4RbMcwy+ro96nFgAT0LtM/RskRTJkNJi9oSeHdXEBJOe12kjlSyiwTFT0HMbdO1ieRumPuitYLxfLnMRRAig/HkKCahlVjq9jYP3imFKqsQtcRpOtQ7VLvIC3hzf38/10PjjB3uQmtZ5sc4Fojg1VSGfJS4hN7OXaGbdvHoOi/fG/w1QKyiIzHwhe0wHtWCIE+Cxpav6FFV8YC+NNtt7KjJ0y12tISZmc/ifP4EFquRnN81qq3E4nuJwpCwclJMbWHTkr1KOcHwlIbWoEk0CzVhzWduWMPlym56ceDg5n+a81z2qmvwnchKdqNGYNn584EbsB17O60tQFLExTaGdNL19+/p0QMM/k30fA5RiqTcER78XlvlNT5enx92QukHJfXQHoP7yjfKysTDRze1SGsy+j4oBtiPWFr7IcpJZodzTvScS0RumcB/xaKbLUy45KjKAxL6Lx4g1h0u4gR8LprVngmHUm5Sag9WOtQHyV9Z7MFYvTlibOPixkOnKWldXK8IxmSN/mTaMKHL+6tUI+Ef+i5CppQm477REikQ9JHsUMEWRI5Yqys2XHPVKXWiy04RRid1xZ3WCTSXb0s2PfAwaA96YH9w7IuiwE=
+#    secure: vTj/cJwxbuiAeUB1DhXTqKBARSk6xjEWwyzFIQUSqIgHO0e339W37pqmU6Da/9aXWeyGNv4RbMcwy+ro96nFgAT0LtM/RskRTJkNJi9oSeHdXEBJOe12kjlSyiwTFT0HMbdO1ieRumPuitYLxfLnMRRAig/HkKCahlVjq9jYP3imFKqsQtcRpOtQ7VLvIC3hzf38/10PjjB3uQmtZ5sc4Fojg1VSGfJS4hN7OXaGbdvHoOi/fG/w1QKyiIzHwhe0wHtWCIE+Cxpav6FFV8YC+NNtt7KjJ0y12tISZmc/ifP4EFquRnN81qq3E4nuJwpCwclJMbWHTkr1KOcHwlIbWoEk0CzVhzWduWMPlym56ceDg5n+a81z2qmvwnchKdqNGYNn584EbsB17O60tQFLExTaGdNL19+/p0QMM/k30fA5RiqTcER78XlvlNT5enx92QukHJfXQHoP7yjfKysTDRze1SGsy+j4oBtiPWFr7IcpJZodzTvScS0RumcB/xaKbLUy45KjKAxL6Lx4g1h0u4gR8LprVngmHUm5Sag9WOtQHyV9Z7MFYvTlibOPixkOnKWldXK8IxmSN/mTaMKHL+6tUI+Ef+i5CppQm477REikQ9JHsUMEWRI5Yqys2XHPVKXWiy04RRid1xZ3WCTSXb0s2PfAwaA96YH9w7IuiwE=

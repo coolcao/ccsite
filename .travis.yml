@@ -15,8 +15,6 @@ before_script:
 - eval $(ssh-agent)
 - ssh-add ~/.ssh/id_rsa_travis
 - cp .travis/ssh_config ~/.ssh/config
-
-
 - git config --global user.name "coolcao"
 - git config --global user.email "me@coolcao.com"
 #- sed -i'' "s~git@github.com:coolcao/coolcao.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/coolcao/coolcao.github.io.git~"

@@ -6,8 +6,6 @@ branches:
   - master
 before_install:
 before_script:
-  - echo -e "Host git.coding.net\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - openssl aes-256-cbc -K $encrypted_3649a89f32c4_key -iv $encrypted_3649a89f32c4_iv
     -in .travis/id_rsa_travis.enc -out ~/.ssh/id_rsa_travis -d
 
@@ -15,6 +13,8 @@ before_script:
   - eval $(ssh-agent)
   - ssh-add ~/.ssh/id_rsa_travis
   - cp .travis/ssh_config ~/.ssh/config
+  - echo -e "Host git.coding.net\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - git config --global user.name "coolcao"
   - git config --global user.email "me@coolcao.com"
 #- sed -i'' "s~git@github.com:coolcao/coolcao.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/coolcao/coolcao.github.io.git~"

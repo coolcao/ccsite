@@ -84,6 +84,6 @@ deploy:
         type: git
         repo:
                 github: git@github.com:coolcao/coolcao.github.io.git,master
-                coding: git@git.coding.net:coolcao/coolcao.git
+                #coding: git@git.coding.net:coolcao/coolcao.git
         #repository: git@github.com:coolcao/coolcao.github.io.git
         branch: master

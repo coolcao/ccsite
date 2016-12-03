@@ -441,9 +441,9 @@ var existLoop = function existLoop(llist){
     let head = llist.head;
     let slow = head;
     let fast = head;
-    while (fast.next) {
+    while (slow.next) {
         slow = slow.next;
-        fast = fast.next.next;
+        fast = fast.next && fast.next.next;
         if(!fast){
             return false;
         }

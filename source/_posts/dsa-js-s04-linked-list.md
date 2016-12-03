@@ -384,3 +384,72 @@ var findKthToTail = function findKthToTail(llist, n) {
 ```
 
 我们获取到链表的大小后，然后遍历链表，当遍历到倒数第n个时返回其值即可。
+
+## 逆转链表
+> 有一个单向链表，写一个方法将其逆转
+
+这里要将其逆转，只要遍历时记住上一个节点，让其next引用指向上一个节点即可。
+
+```js
+var reverseLinkedList = function reverseLinkedList(llist){
+    let pre = null;
+    let head = llist.head;
+    let current = head.next;
+    while (current){
+        let next = current.next;
+        current.next = pre;
+        if(!next){
+            head.next = current;
+            return llist;
+        }
+        pre = current;
+        current = next;
+    }
+    return llist;
+}
+```
+
+## 如何判断一个单向链表中是否存在环
+
+![存在环的单向链表](http://7xt3oh.com2.z0.glb.clouddn.com/blog/loopinlinkedlist.png)
+
+### 方案1:
+链表中存在环，必然有节点会重复访问，我们将访问过的节点存在到一个数组里，每当访问一个节点时，先检查这个数组里有没有这个节点，如果有，那说明已经访问过了，必然存在环。
+
+```js
+var existLoop = function existLoop(llist){
+    let visted = [];
+    let current = llist.head;
+    while (current.next) {
+        current = current.next;
+        if(visted.indexOf(current.element) > -1){
+            return true;
+        }
+        visted.push(current.element);
+    }
+    return false;
+}
+```
+
+### 方案2:
+方案1中要使用额外的空间，而且每次计算该点是否被访问过时，还要重复遍历已访问的数组。那么，我们如果不使用额外的空间如何做？
+想象一下，如果存在环，一直遍历这个链表会怎样？对的，一直绕着环转。
+一个人绕着环转多没意思，我们加一个人，两个人，速度一快一慢，如果存在环，快的迟早会追上慢的。
+
+```js
+var existLoop = function existLoop(llist){
+    let head = llist.head;
+    let slow = head;
+    let fast = head;
+    while (fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if(!fast){
+            return false;
+        }
+        if(fast.element == slow.element){
+            return true;
+        }
+    }
+}
+```

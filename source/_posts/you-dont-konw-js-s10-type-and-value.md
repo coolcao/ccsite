@@ -1,5 +1,5 @@
 ---
-title: 学习笔记-你不知道的js-行为委托
+title: 学习笔记-你不知道的js-值和类型
 date: 2016-12-03 21:33:49
 tags: [js]
 categories:

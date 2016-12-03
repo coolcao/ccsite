@@ -354,3 +354,33 @@ class LinkedList {
     }
 }
 ```
+
+## 链表相关题目
+> ### 输入一个链表，输出该链表中倒数第k个节点。例如，输入 head->1->2->3->4->5 ,倒数第2个节点为4。
+
+我们已经有size()方法获取链表的大小了，因此如果要获取倒数第k个也不难。直接使用这个size做相关操作即可。
+
+```js
+/**
+ * 找出链表中倒数第n个元素
+ * @param  {LinkedList} llist   链表
+ * @param  {Number} n
+ * @return {element}         找到的倒数第n个值
+ */
+var findKthToTail = function findKthToTail(llist, n) {
+    let size = llist.size();
+    let rvalue = null;
+    if (n <= size) {
+        let head = llist.head;
+        let currentNode = head.next;
+        for (let i = 0; i < size - n; i++) {
+            currentNode = currentNode.next;
+        }
+        rvalue = currentNode.element;
+    }
+    return rvalue;
+}
+
+```
+
+我们获取到链表的大小后，然后遍历链表，当遍历到倒数第n个时返回其值即可。

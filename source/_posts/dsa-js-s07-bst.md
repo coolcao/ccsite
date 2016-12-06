@@ -423,10 +423,10 @@ class BSTree {
         this.root = null;
     }
     /**
-        * 查找以node为父节点的子树的最小值
-        * @param  {[type]} node [父节点]
-        * @return {[type]}      [子树的最小值]
-        */
+    * 查找以node为父节点的子树的最小值
+    * @param  {[type]} node [父节点]
+    * @return {[type]}      [子树的最小值]
+    */
     [min](node) {
         let currentNode = node;
         while (currentNode && currentNode.left) {

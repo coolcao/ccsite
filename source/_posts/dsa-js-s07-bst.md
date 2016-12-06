@@ -61,10 +61,10 @@ categories:
 
 ```js
 class Node {
-    constructor(data, left, right) {
-        this.left = left;
-        this.right = right;
+    constructor(data) {
         this.data = data;
+        this.left = null;
+        this.right = null;
     }
     getData() {
         return this.data;
@@ -87,30 +87,30 @@ class Node {
 
 ```js
 insert(element) {
-    let newNode = new Node(element);
-    //如果根节点为空，则直接将新节点插入到根节点
-    if (this.root == null) {
-        this.root = newNode;
-    } else {
-        let currentNode = this.root;
-        while (true) {
-            if (newNode.getData() < currentNode.getData()) {
-                if (currentNode.left == null) {
-                    currentNode.left = newNode;
-                    break;
-                }
-                currentNode = currentNode.left;
-            } else {
-                if (currentNode.right == null) {
-                    currentNode.right = newNode;
-                    break;
-                }
-                currentNode = currentNode.right;
+let newNode = new Node(element);
+//如果根节点为空，则直接将新节点插入到根节点
+if (this.root == null) {
+    this.root = newNode;
+} else {
+    let currentNode = this.root;
+    while (true) {
+        if (newNode.getData() < currentNode.getData()) {
+            if (currentNode.left == null) {
+                currentNode.left = newNode;
+                break;
             }
+            currentNode = currentNode.left;
+        } else {
+            if (currentNode.right == null) {
+                currentNode.right = newNode;
+                break;
+            }
+            currentNode = currentNode.right;
         }
-
     }
+
 }
+};
 ```
 
 #### 中序遍历
@@ -129,11 +129,11 @@ const inOrder = Symbol('inOrder');
 * @param  {Array} result 暂存遍历结果
 */
 [inOrder](node, result) {
-  if (!(node == null)) {
-      this[inOrder](node.left, result);
-      result.push(node.getData());
-      this[inOrder](node.right, result);
-  }
+    if (node !== null) {
+        this[inOrder](node.left, result);
+        result.push(node.getData());
+        this[inOrder](node.right, result);
+    }
 };
 /**
 * 中序遍历，以数组的形式返回遍历结果
@@ -167,12 +167,12 @@ const preOrder = Symbol('preOrder');
 * @param  {Array} result 暂存遍历结果
 */
 [preOrder](node, result) {
-  if (!(node == null)) {
-      result.push(node.getData());
-      this[preOrder](node.left, result);
-      this[preOrder](node.right, result);
-  }
-}
+    if (node !== null) {
+        result.push(node.getData());
+        this[preOrder](node.left, result);
+        this[preOrder](node.right, result);
+    }
+};
 /**
 * 先序遍历，以数组形式返回遍历结果
 * @return {Array} 遍历结果
@@ -198,13 +198,13 @@ const postOrder = Symbol('postOrder');
 * @param  {Node} node 遍历树的根节点
 * @param  {Array} result 暂存遍历结果
 */
-[postOrder](node,result) {
-  if(!(node == null)){
-      this[preOrder](node.left, result);
-      this[preOrder](node.right, result);
-      result.push(node.getData());
-  }
-}
+[postOrder](node, result) {
+    if (node !== null) {
+        this[preOrder](node.left, result);
+        this[preOrder](node.right, result);
+        result.push(node.getData());
+    }
+};
 /**
 * 后序遍历，以数组形式返回遍历结果
 * @return {Array} 遍历结果
@@ -397,19 +397,16 @@ const inOrder = Symbol('inOrder');
 const preOrder = Symbol('preOrder');
 const postOrder = Symbol('postOrder');
 
-
 class Node {
-    constructor(data, left, right) {
-        this.left = left;
-        this.right = right;
+    constructor(data) {
         this.data = data;
+        this.left = null;
+        this.right = null;
     }
     getData() {
         return this.data;
     }
 }
-
-
 
 /**
  * 搜索二叉树
@@ -421,19 +418,20 @@ class Node {
 class BSTree {
     constructor() {
         this.root = null;
-    }
+    };
+
     /**
-    * 查找以node为父节点的子树的最小值
-    * @param  {[type]} node [父节点]
-    * @return {[type]}      [子树的最小值]
-    */
+     * 查找以node为父节点的子树的最小值
+     * @param  {Node} node 父节点
+     * @return {Any}      子树的最小值
+     */
     [min](node) {
         let currentNode = node;
         while (currentNode && currentNode.left) {
             currentNode = currentNode.left;
         }
         return currentNode && currentNode.getData();
-    }
+    };
 
     /**
      * 查找以node为父节点的子树的最大值
@@ -446,7 +444,7 @@ class BSTree {
             currentNode = currentNode.right;
         }
         return currentNode && currentNode.getData();
-    }
+    };
 
     /**
      * 查找元素
@@ -464,7 +462,7 @@ class BSTree {
         } else {
             return true;
         }
-    }
+    };
 
     /**
      * 从二叉搜索树删除节点
@@ -478,6 +476,11 @@ class BSTree {
      * 3.如果待删除的节点包含两个子节点，那么，有两种做法：
      *     1>查找删除节点左子树上的最大值 
      *     2>查找其右子树上的最小值
+     */
+    /**
+     * 删除树的节点，并返回树的根节点
+     * @param {Node} node 树的根节点
+     * @param {Any}  data 要删除数据 
      */
     [removeNode](node, data) {
         if (node == null) {
@@ -508,7 +511,7 @@ class BSTree {
             node.right = this[removeNode](node.right, data);
             return node;
         }
-    }
+    };
 
     /**
      * 中序遍历二叉树
@@ -516,36 +519,38 @@ class BSTree {
      * @param  {Array} result 暂存遍历结果
      */
     [inOrder](node, result) {
-        if (!(node == null)) {
+        if (node !== null) {
             this[inOrder](node.left, result);
             result.push(node.getData());
             this[inOrder](node.right, result);
         }
     };
+
     /**
      * 先序遍历二叉树
      * @param  {Node} node 遍历树的根节点
      * @param  {Array} result 暂存遍历结果
      */
     [preOrder](node, result) {
-        if (!(node == null)) {
+        if (node !== null) {
             result.push(node.getData());
             this[preOrder](node.left, result);
             this[preOrder](node.right, result);
         }
-    }
+    };
+
     /**
      * 后序遍历二叉树
      * @param  {Node} node 遍历树的根节点
      * @param  {Array} result 暂存遍历结果
      */
     [postOrder](node, result) {
-        if (!(node == null)) {
+        if (node !== null) {
             this[preOrder](node.left, result);
             this[preOrder](node.right, result);
             result.push(node.getData());
         }
-    }
+    };
 
 
     /**
@@ -582,7 +587,7 @@ class BSTree {
             }
 
         }
-    }
+    };
 
     /**
      * 在树中查找一个键，如果节点存在，则返回true;如果不存在，则返回false
@@ -591,7 +596,7 @@ class BSTree {
      */
     search(element) {
         return this[search](this.root, element);
-    }
+    };
 
     /**
      * 返回树中最小的值/键
@@ -599,7 +604,7 @@ class BSTree {
      */
     min() {
         return this[min](this.root);
-    }
+    };
 
     /**
      * 返回树中最大的值/键
@@ -607,45 +612,47 @@ class BSTree {
      */
     max() {
         return this[max](this.root);
-    }
+    };
 
 
     /**
      * 从树中移除某个键
      * @param  {Any} data 要删除的值
-     * @return {}      [description]
      */
     remove(data) {
         let root = this[removeNode](this.root, data);
-    }
+    };
 
     /**
      * 中序遍历，以数组的形式返回遍历结果
      * @return {Array} 遍历结果
      */
     inOrder() {
-            let result = [];
-            this[inOrder](this.root, result);
-            return result;
-        }
-        /**
-         * 先序遍历，以数组形式返回遍历结果
-         * @return {Array} 遍历结果
-         */
+        let result = [];
+        this[inOrder](this.root, result);
+        return result;
+    };
+
+    /**
+     * 先序遍历，以数组形式返回遍历结果
+     * @return {Array} 遍历结果
+     */
     preOrder() {
-            let result = [];
-            this[preOrder](this.root, result);
-            return result;
-        }
-        /**
-         * 后序遍历，以数组形式返回遍历结果
-         * @return {Array} 遍历结果
-         */
+        let result = [];
+        this[preOrder](this.root, result);
+        return result;
+    };
+
+    /**
+     * 后序遍历，以数组形式返回遍历结果
+     * @return {Array} 遍历结果
+     */
     postOrder() {
         let result = [];
         this[postOrder](this.root, result);
         return result;
-    }
+    };
+
 }
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: 学习笔记-数据结构与算法js实现-【6】Dictionary
+title: 学习笔记-数据结构与算法js实现-【6】字典
 date: 2016-12-05 19:18:23
 tags: [数据结构与算法,js]
 categories:

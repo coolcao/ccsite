@@ -656,4 +656,81 @@ class BSTree {
 }
 ```
 
+## 练习
+### 层次遍历
+
+![层次遍历](http://7xt3oh.com2.z0.glb.clouddn.com/blog/bst_level_order.png)
+
+#### 方案1：
+可以用一个队列暂存访问过的节点，按照层级关系入队，然后出队遍历即可。
+
+```js
+const Queue = require('./Queue.js');
+levelTraversal(){
+    let result = [];
+    if(this.root){
+        let visted = new Queue();
+        visted.enqueue(this.root);
+        while (!visted.isEmpty()) {
+            let node = visted.dequeue();
+            result.push(node.getData());
+            if(node.left){
+                visted.enqueue(node.left);
+            }
+            if(node.right){
+                visted.enqueue(node.right);
+            }
+        }
+    }
+    return result;
+}
+```
+
+#### 方案2:
+在编程之美这本书上，指明了另外一种方法，将问题拆分为两个：
+1.打印二叉树中某层次的节点，其中根节点为第0层。打印成功，返回true，打印失败，返回false
+2.从第0层开始，依次打印每一层的节点
+
+```js
+/**
+* 打印以node为节点的子树第level层节点
+*/
+[printLevel](node,level){
+    if(!node || level < 0){
+        return false;
+    }
+    if(level == 0){
+        console.log(node.getData());
+        return true;
+    }
+    let pleft = this[printLevel](node.left,level-1);
+    let pright = this[printLevel](node.right,level-1);
+    return pleft || pright;
+}
+
+/**
+* 打印第level层的节点
+* @param  {Number} level 要打印的层数
+* @return {Boolean}       成功返回ture,失败返回false
+*/
+printLevel(level){
+    return this[printLevel](this.root,level);
+}
+
+
+levelTraversal2(){
+    let i = 0;
+    for (i = 0; ; i++) {  
+    if (!this[printLevel](this.root, i))  
+        break;  
+    }
+}
+```
+
+打印第level层节点，相当于打印以level-1层节点为根节点的两棵子树。
+这个逻辑有点绕，看上面的图举例：
+比如要打印第level=2层中的节点，其中5,9都是在第二层。
+那么相当于是打印以5,9父节点7为根节点的树的level-1=1层节点。
+这种方法是以递归的形式，打印第k层，逐层往上递归，然后再下来。
+其中第0层重复访问次数最多，1层次之，逐层递减。
 

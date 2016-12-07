@@ -762,4 +762,29 @@ deep(){
 }
 ```
 
+### 由遍历结果还原BSTree
+#### 先序遍历
+如果给定一个先序遍历结果，要还原BSTree很简单，只需要按照先序遍历结果的顺序重新建树即可。
 
+```js
+const rebuildFromPreOrder = function(array){
+    let bst = new BSTree();
+    array.reduce((pre,current)=>{
+        pre.insert(current);
+        return pre;
+    },bst);
+}
+```
+
+#### 后序遍历
+如果给定一个后序遍历结果，也还原BSTree也很简单，只需要按照后序遍历结果的逆序重新建树即可。
+
+```js
+const rebuildFromPostOrder = function(array){
+    let bst = new BSTree();
+    array.reduceRight((pre,current)=>{
+        pre.insert(current);
+        return pre;
+    },bst);
+}
+```

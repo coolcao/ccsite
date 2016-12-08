@@ -141,6 +141,7 @@ true or false. Such a comparison is performed as follows:
 >The abstract operation ToPrimitive takes an input argument and an optional argument PreferredType. The abstract operation ToPrimitive converts its input argument to a non‐Object type. If an object is capable of converting to more than one primitive type, it may use the optional hint PreferredType to favour that type.
 Conversion occurs according to Table 9:
 >Table 9: ToPrimitive Conversions
+
 >|Input Type|Result|
 |----|----|
 |Undefined|Return input.|
@@ -150,6 +151,7 @@ Conversion occurs according to Table 9:
 |String|Return input.|
 |Symbol|Return input.|
 |Object|Perform the steps following this table.|
+
 >When Type(input) is Object, the following steps are taken:
 >1. If PreferredType was not passed, let hint be "default".
 >2. Else if PreferredType is hint String, let hint be "string".
@@ -174,6 +176,7 @@ Conversion occurs according to Table 9:
         * i. Let result be ? Call(method, O).
         * ii. If Type(result) is not Object, return result.
 >6. Throw a TypeError exception.
+
 >**NOTE** When ToPrimitive is called with no hint, then it generally behaves as if the hint were Number. However, objects may over‐ride this behaviour by de ining a @@toPrimitive method. Of the objects de ined in this speci ication only Date objects (see 20.3.4.45) and Symbol objects (see 19.4.3.4) over‐ride the default ToPrimitive behaviour. Date objects treat no hint as if the hint were String.
 
 ### ToPrimitive() 方法

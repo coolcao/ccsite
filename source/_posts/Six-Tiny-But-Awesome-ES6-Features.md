@@ -1,5 +1,5 @@
 ---
-title: ES6中6个小的却令人惊叹的特性
+title: 【译】ES6中6个小的却令人惊叹的特性
 date: 2016-11-16 22:04:20
 tags: [js,es6]
 categories:

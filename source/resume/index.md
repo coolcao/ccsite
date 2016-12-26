@@ -6,7 +6,7 @@ date: 2016-12-24 23:57:18
 # 曹洪升
 ----
 
-nodejs工程师 |  邮箱：<a href="mailto:me@coolcao.com">me@coolcao.com</a>
+nodejs工程师 |  邮箱：<a href="mailto:me@coolcao.com">me@coolcao.com</a> | 微信：434524099
 
 个人博客：[coolcao.com](http://coolcao.com) | github:[github.com/coolcao](https://github.com/coolcao)
 

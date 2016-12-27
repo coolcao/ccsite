@@ -33,7 +33,6 @@ menu:
   archives: /archives
   tags: /tags
   about: /about
-  resume: /resume
 
 # Enable/Disable menu icons.
 # Icon Mapping:
@@ -45,7 +44,6 @@ menu_icons:
   #KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome
   home: home
   about: user
-  resume: user
   categories: th
   tags: tags
   archives: archive

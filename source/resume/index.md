@@ -8,7 +8,9 @@ date: 2016-12-24 23:57:18
 
 nodejs工程师 |  邮箱：<a href="mailto:me@coolcao.com">me@coolcao.com</a> | 微信：434524099
 
-个人博客：[coolcao.com](http://coolcao.com) | github:[github.com/coolcao](https://github.com/coolcao)
+个人博客：[coolcao.com](http://coolcao.com) 
+github：[github.com/coolcao](https://github.com/coolcao)
+掘金ID：[coolcao](https://gold.xitu.io/user/58115de20ce4630031a13d21)
 
 ## 工作经历
 |公司|职位|时间|

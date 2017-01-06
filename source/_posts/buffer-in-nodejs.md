@@ -1,7 +1,7 @@
 ---
 title: 理解nodejs中的Buffer
 date: 2017-01-06 16:56:01
-tags: [js]
+tags: [js,nodejs]
 categories:
 - 技术博客
 - 原创

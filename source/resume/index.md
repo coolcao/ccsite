@@ -6,9 +6,9 @@ date: 2016-12-24 23:57:18
 # 曹洪升
 ----
 
-nodejs工程师 |  邮箱：<a href="mailto:me@coolcao.com">me@coolcao.com</a> | 微信：434524099
+nodejs工程师 | 电话：18500215563 | 邮箱：<a href="mailto:me@coolcao.com">me@coolcao.com</a> | 微信：434524099
 
-个人博客：[coolcao.com](http://coolcao.com) 
+个人博客：[coolcao.com](http://coolcao.com)
 github：[github.com/coolcao](https://github.com/coolcao)
 掘金ID：[coolcao](https://gold.xitu.io/user/58115de20ce4630031a13d21)
 
@@ -38,7 +38,7 @@ github：[github.com/coolcao](https://github.com/coolcao)
 * 官网重构，设计给原型图，我负责代码实现
 * nodejs + express + postgresql
 * es6 + less 编写前端代码
-* gulp + nodemon 
+* gulp + nodemon
 
 ##### APP后台REST接口 | 开发/维护 | 2014.06～015.08
 * 负责app的rest接口的开发维护，新需求的功能实现
@@ -46,7 +46,7 @@ github：[github.com/coolcao](https://github.com/coolcao)
 
 ##### 自在科技运营后台 | 开发 | 2014.10~2015.09
 * 为公司内部运营人员开发的管理系统
-* nodejs + express + angular 
+* nodejs + express + angular
 * gulp + browser-asyc
 
 
@@ -56,5 +56,3 @@ github：[github.com/coolcao](https://github.com/coolcao)
 前端发展很快，切记内功修炼，不可浮躁。
 
 > 不怎么会写简历，请先大概浏览一下博客文章，以及github，谢谢。
-
-

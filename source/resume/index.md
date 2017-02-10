@@ -49,10 +49,24 @@ github：[github.com/coolcao](https://github.com/coolcao)
 * nodejs + express + angular
 * gulp + browser-asyc
 
+## 近半年读书
+* 你不知道的js（上,下卷）
+* 数据结构与算法JS描述
+* JavaScript高级程序设计
+
+## 2017年读书计划
+* 函数式编程
+* 迈向angular2
+* 深入理解计算机系统
+* CSS权威指南
+
+## 关注方向
+* nodejs，es6，7
+* docker容器技术,持续集成
+* 前端，angular,gulp
+* golang
 
 ## 自我描述
 
 目前重点在nodejs后台及前端开发方向，研究前后端分离方向。
 前端发展很快，切记内功修炼，不可浮躁。
-
-> 不怎么会写简历，请先大概浏览一下博客文章，以及github，谢谢。

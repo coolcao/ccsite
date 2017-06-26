@@ -1,3 +1,9 @@
+---
+title: resume
+date: 2016-10-18 11:27:10
+comments: false
+---
+
 ## 曹洪升
 
 nodejs工程师 | 电话：18500215563 | 邮箱：<a href="mailto:me@coolcao.com">me@coolcao.com</a> | 微信：434524099

@@ -372,6 +372,11 @@ calendar:
   singleEvents: true
   maxResults: 250
 
+### 打赏
+reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
+wechatpay: /pic/pay/wechatpay.png
+alipay: /pic/pay/alipay.png
+
 
 #! ---------------------------------------------------------------
 #! DO NOT EDIT THE FOLLOWING SETTINGS

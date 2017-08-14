@@ -203,7 +203,32 @@ const User = (function () {
 
 这样对外暴露的只是 _name 的这个符号，外部还是无法直接访问每个实例的 privateData 中的值。但这个其实和第二种是一样的，闭包引起的问题还是无法解决。
 
+## 展望未来
+js的私有属性，目前处于 stage2 阶段，目前还未最终确定，不过我们可以先看一下模样：
+
+```js
+class Point {
+  #x;
+  #y;
+
+  constructor(x, y) {
+    this.#x = x;
+    this.#y = y;
+  }
+
+  equals(point) {
+    return this.#x === point.#x && this.#y === point.#y;
+  }
+}
+```
+
+语法如上，使用 `#` 定义私有属性，在类的内部可以直接 使用 `this.#x` 的形式引用。
+目前使用#进行定义和访问私有属性，未来会不会使用 public,private等关键字不得而知。
+
+目前使用`#`，可能的原因是，js没有静态类型系统。
+
 ## 参考
 * [Private instance members with weakmaps in JavaScript](https://www.nczonline.net/blog/2014/01/21/private-instance-members-with-weakmaps-in-javascript/)
 * [Private Properties(MDN)](https://developer.mozilla.org/en-US/Add-ons/SDK/Guides/Contributor_s_Guide/Private_Properties)
 * [JavaScript实现私有属性](http://www.cnblogs.com/ihardcoder/p/4914938.html)
+* [JavaScript's new #private class fields](http://thejameskyle.com/javascripts-new-private-class-fields.html)

@@ -83,7 +83,8 @@ src目录存放java源代码，bin目录存放编译后的class文件。
        ],
        "classPaths": [
          "",
-         "$(workspaceRoot)/bin"
+         "$(workspaceRoot)/bin",
+				 "/Users/coolcao/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.4.1/f07c773f7b3a03c3801d405cadbdc93f7548e321/jackson-databind-2.4.1.jar",
        ],
        "mainClass": "com.coolcao.test.${fileBasenameNoExtension}",
        "args": ""
@@ -92,7 +93,8 @@ src目录存放java源代码，bin目录存放编译后的class文件。
  }
  ```
  简单说明一下，cwd参数配置javac命令运行的根目录，这里应指定编译后的.class文件所在的根目录。
- sourcePaths配置源码目录，classPaths配置编译后的.class目录。
+ sourcePaths目录配置源码目录，包括自己写的源码和第三方库的源码目录。
+ classPaths配置class目录，自己的源码编译后的目录，以及依赖的第三方的jar包的目录，如果依赖了第三方包，则这里要配依赖的jar包的所在目录，否则在debug时会出现找不到类的错误。
  mainClass配置要运行的主类文件。这里有一点不好的是，需要手动补全类的包名。如果文件都不在一个同一个包下，那么每次debug时需要指定当前运行类所在的包。
  以上几个参数是最重要的，用了vscode内置的几个变量。
  args是运行class文件需要添加的参数，根据需要配置即可。

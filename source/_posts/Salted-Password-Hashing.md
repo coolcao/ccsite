@@ -11,12 +11,11 @@ categories:
 
 作为一名Web开发人员，我们经常需要与用户的帐号系统打交道，而这其中最大的挑战就是如何保护用户的密码。经常会看到用户账户数据库频繁被黑，所以我们必须采取一些措施来保护用户密码，以免导致不必要的数据泄露。保护密码的最好办法是使用加盐密码哈希（ salted password hashing）。
 
-
 在对密码进行哈希加密的问题上，人们有很多争论和误解，可能是由于网络上有大量错误信息的原因吧。对密码哈希加密是一件很简单的事，但很多人都犯了错。本文将会重点分享如何进行正确加密用户密码。
 
-重要警告：请放弃编写自己的密码哈希加密代码的念头！因为这件事太容易搞砸了。就算你在大学学过密码学的知识，也应该遵循这个警告。所有人都要谨记这点：不要自己写哈希加密算法！ 存储密码的相关问题已经有了成熟的解决方案，就是使用 [phpass](http://www.openwall.com/phpass/)，或者在 [defuse/password-hashing](https://github.com/defuse/password-hashing) 或 [libsodium](https://download.libsodium.org/doc/password_hashing/index.html) 上的 PHP 、 C# 、 Java 和 Ruby 的实现。
+> 重要警告：请放弃编写自己的密码哈希加密代码的念头！因为这件事太容易搞砸了。就算你在大学学过密码学的知识，也应该遵循这个警告。所有人都要谨记这点：不要自己写哈希加密算法！ 存储密码的相关问题已经有了成熟的解决方案，就是使用 [phpass](http://www.openwall.com/phpass/)，或者在 [defuse/password-hashing](https://github.com/defuse/password-hashing) 或 [libsodium](https://download.libsodium.org/doc/password_hashing/index.html) 上的 PHP 、 C# 、 Java 和 Ruby 的实现。
 
-
+<!-- more -->
 ## 密码哈希是什么？
 
 ```

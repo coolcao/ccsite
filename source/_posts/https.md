@@ -37,7 +37,7 @@ HTTPS为何能保障web的安全，其运行原理是怎样的，当我们深入
 
 ## HTTPS流程
 
-![https流程图](../pic/https/https.svg)
+![https流程图](/pic/https/https.svg)
 
 HTTPS流程包含握手和后续的数据传输，握手的目的是为了客户端与服务端协商加密算法等参数。
 

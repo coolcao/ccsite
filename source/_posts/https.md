@@ -104,7 +104,9 @@ pre master的存在在于SSL协议不信任每个主机都能产生完全随机�
 
 原理就是，fiddler/charles在客户端和服务器间充当了中间人的角色，在客户端面前假装是https服务器，在真正的https服务器前假装是客户端。
 
-流程如下：
+流程如下图：
+
+![fiddler拦截https示意图](/pic/https/fiddler拦截https示意图.svg)
 
 1. fiddler/charles拦截客户端发送给https服务器的握手请求，并伪装成客户端向服务器发送请求进行握手
 2. 服务器发回响应，fiddler/charles获取到服务器的CA证书，用根证书公钥进行解密，验证服务器数字签名，获取到服务器CA证书的公钥。然后fiddler/charles伪造自己的CA证书，冒充服务器证书传递给客户端浏览器。

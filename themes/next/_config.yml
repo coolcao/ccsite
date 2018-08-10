@@ -144,7 +144,8 @@ social_icons:
 # in site  directory(source/uploads): /uploads/avatar.jpg
 avatar:
   #http://7xt3oh.com2.z0.glb.clouddn.com/CC2.png
-  http://7xt3oh.com2.z0.glb.clouddn.com/blog/cc_logo_cricle.png
+  # http://7xt3oh.com2.z0.glb.clouddn.com/blog/cc_logo_cricle.png
+  images/logo.svg
 
 
 # Table Of Contents in the Sidebar

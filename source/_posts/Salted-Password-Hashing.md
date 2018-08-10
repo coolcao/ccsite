@@ -7,7 +7,7 @@ categories:
 - 转载
 ---
 
-> 本文转载自 [如何正确对用户密码进行加密？](http://www.infoq.com/cn/articles/how-to-encrypt-the-user-password-correctly)
+> 本文转载自 [如何正确对用户密码进行加密？](http://www.infoq.com/cn/articles/how-to-encrypt-the-user-password-correctly)。由[刘志勇](http://www.infoq.com/cn/profile/%E5%88%98%E5%BF%97%E5%8B%87)翻译自[Defuse Security](https://defuse.ca/)团队的文章[Salted Password Hashing - Doing it Right](https://crackstation.net/hashing-security.htm)
 
 作为一名Web开发人员，我们经常需要与用户的帐号系统打交道，而这其中最大的挑战就是如何保护用户的密码。经常会看到用户账户数据库频繁被黑，所以我们必须采取一些措施来保护用户密码，以免导致不必要的数据泄露。保护密码的最好办法是使用加盐密码哈希（ salted password hashing）。
 

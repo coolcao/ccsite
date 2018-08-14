@@ -46,10 +46,10 @@ npm install @types/sequelize --save-dev
 其中typeAcquisition参数是必配的，标识启用类型感知功能，里面的include标识对哪个包启用。
 上面的include不是必须的，只是用来标识jsconfig.json文件对哪些文件起作用。
 开启后，如图：
-![vscode](/pic/vscode1.png)
+![vscode](/resources/pic/vscode1.png)
 我们上图中例子提示的就是sequelize包中Model类的实例方法和属性。
 vscode对智能感知的图标，也给了一定的汇总：
-![vscode感知图标](/pic/vscode2.png)
+![vscode感知图标](/resources/pic/vscode2.png)
 
 ## 在js文件中启用语义检查
 如果要在js中启用类型检查，可以在文件最上面添加 `// @ts-check` 注释。

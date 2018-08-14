@@ -37,7 +37,7 @@ HTTPS为何能保障web的安全，其运行原理是怎样的，当我们深入
 
 ## HTTPS流程
 
-![https流程图](/pic/https/https.svg)
+![https流程图](/resources/pic/https/https.svg)
 
 HTTPS流程包含握手和后续的数据传输，握手的目的是为了客户端与服务端协商加密算法等参数。
 
@@ -92,7 +92,7 @@ pre master的存在在于SSL协议不信任每个主机都能产生完全随机�
 而且，由于对称加密算法比非对称加密要快， 所以，采用 '非对称加密+对称加密' 这种混合模式比 '非对称加密+非对称加密' 这种模式效率也高。可以说是在安全性以及性能方面的综合考虑。
 
 ### 对于证书的验证，客户端是如何做的？
-![证书验证流程](/pic/https/证书验证流程.svg)
+![证书验证流程](/resources/pic/https/证书验证流程.svg)
 
 首先，服务器端需要先向CA机构申请证书，申请证书的时候，服务器向CA机构提供服务器的公钥，CA机构用自己的CA私钥对服务器的公钥进行签名，生成数字摘要，然后将服务器公钥和数字签名打进证书。
 
@@ -106,7 +106,7 @@ pre master的存在在于SSL协议不信任每个主机都能产生完全随机�
 
 流程如下图：
 
-![fiddler拦截https示意图](/pic/https/fiddler拦截https示意图.svg)
+![fiddler拦截https示意图](/resources/pic/https/fiddler拦截https示意图.svg)
 
 1. fiddler/charles拦截客户端发送给https服务器的握手请求，并伪装成客户端向服务器发送请求进行握手
 2. 服务器发回响应，fiddler/charles获取到服务器的CA证书，用根证书公钥进行解密，验证服务器数字签名，获取到服务器CA证书的公钥。然后fiddler/charles伪造自己的CA证书，冒充服务器证书传递给客户端浏览器。

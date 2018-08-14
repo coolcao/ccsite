@@ -99,3 +99,5 @@
 {% if theme.canonical %}
   <link rel="canonical" href="{{ config.url }}/{{ page.canonical_path.replace('index.html', '') }}"/>
 {% endif %}
+
+<link rel="stylesheet" type="text/css" href="/css/asciinema-player.css" />

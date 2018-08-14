@@ -94,7 +94,7 @@ linux下一款牛叉的终端
 比视频录制的有点在于录制的Json文件体积更小，而且还可以直接嵌入到网页中进行播放。
 比如下面这个录制的mycli的一个简单例子：
 
-<script type="text/javascript" src="https://asciinema.org/a/ixvFox4635dSa54VyLCVqzz5M.js" id="asciicast-ixvFox4635dSa54VyLCVqzz5M" async></script>
+<asciinema-player src="/resources/cast/mycli.test.cast" preload="ture"   poster="npt:0:30"></asciinema-player>
 
 ## git 图形化工具
 ----

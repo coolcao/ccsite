@@ -58,7 +58,7 @@ collection.update({_id:doc._id},{$set:{status:1}});
 仔细上网搜了下，在stackoverflow上也有人提到过相关的问题，[如何将mongo中js驱动的数字类型强制转换为Double类型](http://stackoverflow.com/questions/14382346/forcing-javascript-numbers-to-double-in-mongodb-document)，原来nodejs原生驱动，对数字类型做了优化。
 将数字类型细分成Int,Long,Double类型，从源码中我们也可以看出端倪：
 
-![](http://7xt3oh.com2.z0.glb.clouddn.com/blog/mongo_data_type.png)
+![](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/mongo_data_type.png)
 
 如图框中的部分，已然定义了Int32,Long,Double三种数字类型。
 

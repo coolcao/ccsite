@@ -58,7 +58,7 @@ github出的一款编辑器，由于使用的是electron技术，资源占用有
 |atom-beautify|atom格式化工具，可以格式化html,js,css等|...|
 |atom-typescript|typescript支持|...|
 |clang-format|c/c++格式化工具|...|
-|gist|gist插件|同sublime插件一样，需要配置access token，在`.atom/config.cson`文件中添加![](http://7xt3oh.com2.z0.glb.clouddn.com/blog/atom-gist.png)|
+|gist|gist插件|同sublime插件一样，需要配置access token，在`.atom/config.cson`文件中添加![](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/atom-gist.png)|
 |javascript-snippets|js代码补全插件|...|
 |jsFormat|js格式化工具|...|
 |Pretty JSON|json格式化工具|...|

@@ -52,7 +52,7 @@ s1是通过new调用Student实例化而来。
 
 我们来分析一下以上代码的原型图：
 
-![原型图](http://7xt3oh.com2.z0.glb.clouddn.com/prototype_class_extends.png)
+![原型图](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/prototype_class_extends.png)
 
 Person,Student分别是两个构造函数，他们的prototype分别指向两个原型对象，而Sutdent.prototype的[[Prototype]]指向Person.prototype，s1为Student的一个实例对象，其[[Prototype]]指向Sutdent.prototype对象，这样就形成了原型链：
 `s1 -> Student.prototype -> Person.prototype`
@@ -118,7 +118,7 @@ s1.sayHi();
 这里，Person,Student是两个对象，而非函数。Student的原型对象指向Person,而s1对象的原型指向Student，因此三者构成了原型链：`s1 -> Student -> Person`，这里没有了构造函数，没有了类的误导，同样也可以很好的工作。
 而且原型链关系更简洁，就是上面原型链图，去掉了构造函数 ，将Person.prototype和Student.prototype替换为Person和Student两个对象。
 
-![原型图](http://7xt3oh.com2.z0.glb.clouddn.com/prototype_proxy.png)
+![原型图](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/prototype_proxy.png)
 
 对象Student和s1都是通过Object.create()创建，Student委托了Person,s1委托了Student。
 因此，在这里，使用委托去理解javascript的原型链更符合常规，更清晰易懂。

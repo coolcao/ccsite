@@ -31,10 +31,10 @@ if (oSession.PathAndQuery=="/hello/hello.html") {
 ```
 
 注意：oSession.PathAndQuery的值为fiddler中session列表中的Url：
-![](http://7xt3oh.com2.z0.glb.clouddn.com/blog/20140929154209755.jpeg)
+![](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/20140929154209755.jpeg)
 
 即图中红色标注出来的部分。图中黄色标注出来的部分有点特殊，host为Tunnel to ,url为另一host。查看该请求的Header为：
-![](http://7xt3oh.com2.z0.glb.clouddn.com/blog/20140929154512744.jpeg)
+![](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/20140929154512744.jpeg)
 
 这种特殊情况会在下面还有例子。
 上面的例子，拦截请求地址为/hello/hello.html的请求，并将其转发到相同Server的/hello/index.html
@@ -45,11 +45,11 @@ if(oSession.HostnameIs("www.baidu.com")){
 }  
 ```
 这个例子是将发送到百度的请求转发到新浪，则会提示页面不存在。这里只是改变了host，并不改变后面的地址，因此，如果在新浪上不存在相应的页面。如下面图片所示：
-![1](http://7xt3oh.com2.z0.glb.clouddn.com/blog/20140929152403525.jpeg)
+![1](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/20140929152403525.jpeg)
 
 如果我访问的是如下地址：http://www.baidu.com/link?url=CQuVpjo9u9UQADcstwECPEmrziPMk5u5H9PlRN2TbWLkKZaxafVER2X8OEYzovr-yasX2Fwcgj0NANBtKVj0gN78jNJ3bXTmIsTeBk7hXem
 则结果如下：（该页面实际是存在的，是百度搜索出来的结果页面，被fiddler转发到新浪，但是新浪上不存的此页面）
-![](http://7xt3oh.com2.z0.glb.clouddn.com/blog/20140929152504443.jpeg)
+![](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/20140929152504443.jpeg)
 
 #### 将请求转发到不同端口号，不同Server
 ```javascript
@@ -59,7 +59,7 @@ if (oSession.host=="192.168.0.70:8080") {
 ```
 这个例子是将发送到192.168.0.70:8080的请求转发到192.168.0.69:8020，这里只是改变host，并不改变后面的请求地址。例如，做以上的规则后，我请求的是：
 http://192.168.0.70:8080/hello/hello.html
-![](http://7xt3oh.com2.z0.glb.clouddn.com/blog/20140929153525496.jpeg)
+![](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/20140929153525496.jpeg)
 
 而实际我项目部署到的是：192.168.0.69:8020
 

@@ -51,9 +51,9 @@ js运行时至少有两个线程：主线程，工作线程
 
 ### 简单的事件循环模型图
 
-![chrome](http://7xt3oh.com2.z0.glb.clouddn.com/blog/20160922091924733.png)
+![chrome](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/20160922091924733.png)
 
-![nodejs](http://7xt3oh.com2.z0.glb.clouddn.com/blog/nodejs_event_loop.png)
+![nodejs](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/nodejs_event_loop.png)
 
 好了，这是最简单的关于事件循环的介绍。
 可是，看完依然很蒙圈。
@@ -100,7 +100,7 @@ js运行时至少有两个线程：主线程，工作线程
 在《你不知道的js》这本书中，作者有提到，ES6规范新提了一个`Job Queue`工作队列的概念，这个概念和微任务很相似。
 
 因此，这里的再补一个图：
-![宏任务/微任务](http://7xt3oh.com2.z0.glb.clouddn.com/blog/the-Node-js-event-loop.png)
+![宏任务/微任务](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/the-Node-js-event-loop.png)
 
 具体的代码实例，可以参看[我的博客中翻译的一篇文章](http://localhost:4000/2016/12/18/nodejs_at_scale/understanding-the-nodejs-event-loop/)
 

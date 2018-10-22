@@ -25,7 +25,7 @@ travis是一款在线的开源项目集成构建工具，与github无缝连接�
 * travis自动构建并发布到github pages
 这样我们只需要编写markdown并提交就可以了，剩下的事情交由travis去自动构建发布。
 
-![travis](http://7xt3oh.com2.z0.glb.clouddn.com/travis.png)
+![travis](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/travis.png)
 
 ## 前提说明
 具体怎么搭建hexo，开通github pages这里不再做具体说明，网上资源很多，可google。
@@ -50,12 +50,12 @@ ssh-keygen -t rsa -C "me@coolcao.com"
 网页登录travis，直接用github登录即可。
 登录完成后，会完整列出你的github上所有公开项目。
 
-![所有项目](http://7xt3oh.com2.z0.glb.clouddn.com/coolcao_-_Profile_-_Travis_CI.png)
+![所有项目](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/coolcao_-_Profile_-_Travis_CI.png)
 
 选择你的hexo项目，开启。
 然后点击配置，配置如下：
 
-![配置](http://7xt3oh.com2.z0.glb.clouddn.com/Settings_-_coolcao_ccsite_-_Travis_CI2.png)
+![配置](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/Settings_-_coolcao_ccsite_-_Travis_CI2.png)
 
 这里指明，只构建.travis.yml文件中配置的分支。
 

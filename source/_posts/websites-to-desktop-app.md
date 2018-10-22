@@ -34,7 +34,7 @@ nativefier --name 'ccsite' --icon ccsite.icns 'http://coolcao.com'
 ```
 
 然后我们就在当前目录下打包了应用
-![ccsite](http://7xt3oh.com2.z0.glb.clouddn.com/websites2app.png)
+![ccsite](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/websites2app.png)
 打开应用看一下，其实就是electron架了个壳子。
 你可以根据具体的平台打包成相应的二进制包，linux,windows,mac随意。
 唯一不足的地方在于，这只能打包在线网站，如果想做本地应用，可以直接使用electron。

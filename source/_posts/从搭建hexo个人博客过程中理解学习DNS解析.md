@@ -63,10 +63,10 @@ Type(类型)指出了这是什么类型的记录。
 * **ISP DNS缓存**：接下来要检查的就是网络服务提供商缓存DNS的服务器，在这一般都能找到相应的缓存记录。ISP专门的域名解析服务器（LDNS）一般都会缓存域名解析记录，缓存时间受域名的失效时间控制，大约80%的域名解析到这里就已经完成了，所以，LDNS主要承担了域名的解析工作。
 * **递归搜索**：从根域名服务器开始进行递归搜索，到顶级域名服务器，再到第二层域服务器。
 
-![DNS递归查找](http://7xt3oh.com2.z0.glb.clouddn.com/blog/500pxAn_example_of_theoretical_DNS_recursion_svg.png)
+![DNS递归查找](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/500pxAn_example_of_theoretical_DNS_recursion_svg.png)
 
 ### 域名解析示意图
-![域名解析](http://7xt3oh.com2.z0.glb.clouddn.com/blog/32648197_1.jpg)
+![域名解析](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/32648197_1.jpg)
 
 前面浏览器缓存，系统缓存及路由器缓存都是在本地完成的，所以，图中所示是从本地区的域名服务器LDNS开始的。
 我们在网络配置中，都会有一个“DNS服务器地址”这一项，这个地址就是本地区域名服务器LDNS。这个DNS服务器通常是由提供给你网络服务的提供商提供，如联通或电信等。
@@ -80,7 +80,7 @@ LDNS域名服务器会缓存这个域名和ip的对应关系，并将结果返�
 在实际DNS解析过程中，Name Server也可能有很多级，或者有一个GTM负载均衡控制，这都有可能会影响到域名解析过程。
 
 
-![域名解析示意图](http://7xt3oh.com2.z0.glb.clouddn.com/blog/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.jpg)
+![域名解析示意图](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.jpg)
 解析 www.163.com示例
 
 ## hexo绑定域名过程
@@ -90,22 +90,22 @@ LDNS域名服务器会缓存这个域名和ip的对应关系，并将结果返�
 
 #### CNAME的@记录和MX的@记录不能共存
 由于我的域名coolcao.com开通的时候，自动开通了企业邮箱，因此，在域名解析那里，阿里云自动生成了几条和邮件相关的解析记录，如下图：
-![阿里云域名解析](http://7xt3oh.com2.z0.glb.clouddn.com/blog/aliyun_dns_o.png)
+![阿里云域名解析](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/aliyun_dns_o.png)
 从上图中可以看出，由于开通了企业邮箱，默认开启5条记录，两条不同优先级的MX记录，三条CNAME记录，当我添加解析到我的github pages的记录时报错了：
-![MX和CNAME冲突](http://7xt3oh.com2.z0.glb.clouddn.com/blog/conflict_mx_cname.png)
+![MX和CNAME冲突](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/conflict_mx_cname.png)
 点开冲突记录规则，有如下规则：
-![冲突记录规则](http://7xt3oh.com2.z0.glb.clouddn.com/blog/dns_rules.png)
+![冲突记录规则](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/dns_rules.png)
 也就是说，MX记录和CNAME在主机记录为 `@`时不能共存，那该怎么办，企业邮箱和www站不能同时解析拥有么？
 当然不是，经过上网查找资料，大致有下面两个办法：
 * 采用Link类型解析
 首先添加一条CNAME类型的www记录，解析到github pages地址。
-![www解析](http://7xt3oh.com2.z0.glb.clouddn.com/blog/dns_www.png)
+![www解析](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/dns_www.png)
 然后再添加一条Link类型的@解析，这里解析到带www的完整地址，这里我的是：`www.coolcao.com`
 但这里有个要求，是域名必须要经过备案，即`coolcao.com`要必须备案，才能添加。由于我的还未备案，无从验证实验结果。如果有备案的，可以验证一下是否有效。
 * 采用A类型解析
 我的域名没有备案，因此用不了Link类型，可以采用A类型解析。
 首先使用ping命令看一下自己的github pages的IP是多少。我这里查到的是：`151.101.100.133`,因此添加如下记录：
-![A记录解析](http://7xt3oh.com2.z0.glb.clouddn.com/blog/dns_a.png)
+![A记录解析](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/dns_a.png)
 同时添加一条CNAME类型的www解析，这样，可以通过`coolcao.com`或`www.coolcao.com`都能访问到我的小站。
 *但这种方式也有个问题，如果github的IP地址变化了的话，得需要再改变A记录的值，可以说是一种不稳定的因素吧。但是域名没备案，没办法的办法。*
 

@@ -15,7 +15,7 @@ categories:
 markdown的目录结构可能如下:`前端/js/you_dont_konw_js`,`前端/js/node_at_scale`,`前端/css`等等。我在解析的时候，将其解析成数组：`[['前端','js','your_dont_konw_js'],['前端','js','node_at_scale'],['前端','css']]`，其中的每一项表示每个文件所在的目录。
 在有一个分类的页面中，我想将每个目录中文档个数统计出来，并想展示其目录结构，预期如下：
 
-![目录](http://7xt3oh.com2.z0.glb.clouddn.com/blog/coolcao_mdblog_catalog.png)
+![目录](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/coolcao_mdblog_catalog.png)
 
 从数据库中查出来的原始数组如下：
 

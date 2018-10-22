@@ -123,14 +123,14 @@ void sum(const FunctionCallbackInfo<Value> &args) {
 
 这里其实是v8引擎内部类型，基本和js的内置对象是一一对应的。可以查阅[v8类型说明文档](http://bespin.cz/~ondras/html/classv8_1_1Value.html)。
 
-![v8 Types](http://7xt3oh.com2.z0.glb.clouddn.com/blog/V8__v8__Value_Class_Reference.png)
+![v8 Types](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/V8__v8__Value_Class_Reference.png)
 
 上面这个图是不是很熟悉，和js的类型系统特别像。
 js的Array,Date,Function,String等等都是继承自Object，而v8引擎内部，Object和Primitive都是继承自Value类型。
 
 这里的IsNumber()方法就是Value类型的方法。那么除了这个方法，还有什么方法呢？
 
-![Value方法](http://7xt3oh.com2.z0.glb.clouddn.com/blog/V8__v8__Value_Class_Reference1.png)
+![Value方法](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/V8__v8__Value_Class_Reference1.png)
 
 上面这张图，我只是截了一小部分，全部的可以直接去查阅文档。看，这里有各种方法，判断是否是数字类型的IsNumber()，判断是否是日期类型的IsDate()，判断是否是数组的IsArray()方法等等。
 
@@ -194,7 +194,7 @@ void sumOfArray(const FunctionCallbackInfo<Value> &args){
 但是你会发现，v8确实有个Array类，继承自Object类。那么Array有什么方法呢？
 看文档就知道了，少的可怜：
 
-![Array方法](http://7xt3oh.com2.z0.glb.clouddn.com/blog/V8__v8__Array_Class_Reference3.png)
+![Array方法](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/V8__v8__Array_Class_Reference3.png)
 
 所以，对数组的操作都将转换为对象操作。
 

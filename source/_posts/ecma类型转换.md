@@ -25,7 +25,7 @@ categories:
 
 从表格中的说明，我们可以看出，ToBoolean()转换过程如下图：
 
-![ToBoolean](http://7xt3oh.com2.z0.glb.clouddn.com/blog/ToBoolean.png)
+![ToBoolean](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/ToBoolean.png)
 
 ## ToString(argument)
 

@@ -132,7 +132,7 @@ Could not determine java version from '9.0.1'.
 有两种解救办法：
 * 创建项目时，自己指定gradle为本地已下载的高版本gradle
  该方法前提是本地已下载了支持java9的gradle版本，比如 4.4.1，下载完后一般放到`~/.gradle/wrapper/dists`目录下，然后创建的时候选择该版本即可
-  ![pic](http://7xt3oh.com2.z0.glb.clouddn.com/blog/idea_gradle.png)
+  ![pic](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/idea_gradle.png)
 * 使用 gradlew 配置
 创建完成后，如果提示gradle版本不对或者要修改gradle版本，可以使用gradle wrapper：
 ```

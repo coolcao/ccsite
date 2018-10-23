@@ -7,8 +7,6 @@ categories:
 - 原创
 ---
 
-test
-
 使用hexo搭建博客，然后将生成的静态网页托管到github pages上，需要三个步骤：
 * 编写markdown博客
 * hexo生成并发布

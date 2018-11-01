@@ -43,8 +43,7 @@ hash("waltz") = c0e81794384491161f1777c232bc6bd9ec38f616560b120fda8e90f383853542
 ## 如何破解哈希？
 
 ### 字典攻击和暴力攻击（ Dictionary and Brute Force Attacks）
-
-![字典攻击和暴力破解](http://7xt3oh.com1.z0.glb.clouddn.com/blog/Secure_Salted_Password_Hashing_-_How_to_do_it_Properly1.png)
+![字典攻击和暴力破解](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/Secure_Salted_Password_Hashing_-_How_to_do_it_Properly1.png)
 
 破解哈希加密最简单的方法是尝试猜测密码，哈希每个猜测的密码，并对比猜测密码的哈希值是否等于被破解的哈希值。如果相等，则猜中。猜测密码攻击的两种最常见的方法是 **字典攻击** 和 **暴力攻击** 。
 
@@ -55,7 +54,7 @@ hash("waltz") = c0e81794384491161f1777c232bc6bd9ec38f616560b120fda8e90f383853542
 目前没有办法来阻止字典攻击或暴力攻击。只能想办法让它们变得低效。如果密码哈希系统设计是安全的，破解哈希的唯一方法就是进行字典攻击或暴力攻击遍历每一个哈希值了。
 
 ### 查表法（ Lookup Tables）
-![](http://7xt3oh.com1.z0.glb.clouddn.com/blog/Secure_Salted_Password_Hashing_-_How_to_do_it_Properly2.png)
+![查表法](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/Secure_Salted_Password_Hashing_-_How_to_do_it_Properly2.png)
 
 对于破解相同类型的哈希值，查表法是一种非常高效的方式。主要理念是预先计算（ pre-compute）出密码字典中的每个密码的哈希值，然后把他们相应的密码存储到一个表里。一个设计良好的查询表结构，即使包含了数十亿个哈希值，仍然可以实现每秒钟查询数百次哈希。
 
@@ -69,7 +68,7 @@ e4ba5cbd251c98e6cd1c23f126a3b81d8d8328abc95387229850952b3ef9f904
 ```
 
 ### 反向查表法（ Reverse Lookup Tables）
-![](http://7xt3oh.com1.z0.glb.clouddn.com/blog/Secure_Salted_Password_Hashing_-_How_to_do_it_Properly3.png)
+![反向查表法](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/Secure_Salted_Password_Hashing_-_How_to_do_it_Properly3.png)
 
 这种攻击允许攻击者无需预先计算好查询表的情况下同时对多个哈希值发起字典攻击或暴力攻击。
 
@@ -81,7 +80,7 @@ e4ba5cbd251c98e6cd1c23f126a3b81d8d8328abc95387229850952b3ef9f904
 接下来，我们来看一种谓之“加盐（ salting）”的技术，能够让查表法和彩虹表都失效。
 
 ## 加盐（ Adding Salt）
-![](http://7xt3oh.com1.z0.glb.clouddn.com/blog/Secure_Salted_Password_Hashing_-_How_to_do_it_Properly_add_salt.png)
+![加盐](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/Secure_Salted_Password_Hashing_-_How_to_do_it_Properly_add_salt.png)
 
 查表法和彩虹表只有在所有密码都以完全相同的方式进行哈希加密才有效。如果两个用户有相同的密码，他们将有相同的密码哈希值。我们可以通过“随机化”哈希，当同一个密码哈希两次后，得到的哈希值是不一样的，从而避免了这种攻击。
 
@@ -140,7 +139,7 @@ e4ba5cbd251c98e6cd1c23f126a3b81d8d8328abc95387229850952b3ef9f904
 
 盐值应该使用加密的 **安全伪随机数生成器（ Cryptographically Secure Pseudo-Random Number Generator，CSPRNG ）** 产生。CSPRNG和普通的伪随机数生成器有很大不同，如“ C ”语言的rand()函数。顾名思义， CSPRNG 被设计成用于加密安全，这意味着它能提供高度随机、完全不可预测的随机数。我们不希望盐值能够被预测到，所以必须使用 CSPRNG 。下表列出了一些当前主流编程平台的 CSPRNG 方法。
 
-![](http://7xt3oh.com1.z0.glb.clouddn.com/blog/Secure_Salted_Password_Hashing_-_How_to_do_it_Properly_hash.png)
+![加盐哈希](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/Secure_Salted_Password_Hashing_-_How_to_do_it_Properly_hash.png)
 
 每个用户的每一个密码都要使用独一无二的盐值。用户每次创建帐号或更改密码时，密码应采用一个新的随机盐值。**永远不要重复使用某个盐值**。这个盐值也应该足够长，以使有足够多的盐值能用于哈希加密。一个经验规则是，**盐值至少要跟哈希函数的输出一样长**。**该盐应和密码哈希一起存储在用户帐号表中**。
 

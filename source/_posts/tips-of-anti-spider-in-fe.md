@@ -19,19 +19,19 @@ categories:
 代表网站有猫眼电影和去哪儿手机端。
 
 ### 1.1 猫眼电影
-![今日票房](http://7xt3oh.com1.z0.glb.clouddn.com/blog/maoyan.1.png)
+![今日票房](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/maoyan.1.png)
 
 如上图，是猫眼首页今日票房栏的前10名统计（截图只截取了前三名），其中的票房数据，对爬虫来说是私密数据，于是，猫眼给“加密”了。
 
-![source](http://7xt3oh.com1.z0.glb.clouddn.com/blog/maoyan.2.png)
+![source](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/maoyan.2.png)
 
 网页代码显示的是一堆乱码，都是方框。。。
 
 我们通过浏览器的开发者工具查看该部分“方框”数字，发现是用了自定义的字体渲染成可视的数字的。
 
-![maoyan.3](http://7xt3oh.com1.z0.glb.clouddn.com/blog/maoyan.3.png)
+![maoyan.3](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/maoyan.3.png)
 
-![maoyan.4](http://7xt3oh.com1.z0.glb.clouddn.com/blog/maoyan.5.png)
+![maoyan.4](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/maoyan.5.png)
 
 woff字体是网页开放字体格式，详细可参见 [MDN](https://developer.mozilla.org/zh-CN/docs/WOFF)。
 
@@ -41,7 +41,7 @@ woff字体是网页开放字体格式，详细可参见 [MDN](https://developer.
 
 将下载后的woff文件字体，在百度字体编辑器中打开：
 
-![baidu.font](http://7xt3oh.com1.z0.glb.clouddn.com/blog/maoyan.6.png)
+![baidu.font](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/maoyan.6.png)
 
 好了，一目了然，这个字体文件里，**采用随机的Unicode编码来定义了 0-9这几个数字以及一个空白符和一个小数点，而且数字定义的顺序不是固定的，Unicode编码也不是连续的**。
 
@@ -141,7 +141,7 @@ font.saveXML('/Users/coolcao/maoyan2.xml')
 
 第二部分是具体每个字体的座标集合信息，这里我只摘录了其中的一个字符`F4CA`的信息，我们多刷新两次页面，拿两个不同的woff文件，转换成xml文件，对比会发现，虽然每次定义的unicode不同，顺序是随机的，unicode也不连续，但是，但是，但是，有一样是相同的，那就是上面第二部分字体的座标信息。为啥一样呢？因为每个数字样式是固定的，所以画出图来座标必定是一样的。
 
-![maoyan.7](http://7xt3oh.com1.z0.glb.clouddn.com/blog/manyan.7.png)
+![maoyan.7](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/manyan.7.png)
 
 好了同志们，到这里，基本就明朗了，我们可以人工先把几个数字的座标点进行标记，然后每次刷新时，拿到新的woff字体时，通过fonttool将字体转换成xml格式，根据座标点信息，判断其uncode值分别是多少。然后再将代码中的“方框”转换成真实数字即可。
 
@@ -152,7 +152,7 @@ font.saveXML('/Users/coolcao/maoyan2.xml')
 
 而且，去哪儿自定义的字体，采用的unicode也比较简单，看下面：
 
-![去哪儿](http://7xt3oh.com1.z0.glb.clouddn.com/blog/qunaer.1.png)
+![去哪儿](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/qunaer.1.png)
 
 去哪儿直接用的真实数字的uncode进行编码，只不过顺序和真实数字不是一一对应的，也就是说，网页源码中如果是 '183'，实际显示的数字却是 '361'。
 
@@ -294,8 +294,8 @@ d821
 ## 2. 元素定位覆盖
 这种方式太有意思了，给两套数据，前面一套假的，后面一套真的，然后显示时，通过css定位，将假的数据覆盖掉，只显示真实数据。
 
-![源码](http://7xt3oh.com1.z0.glb.clouddn.com/blog/qunar.2.png)
-![真实数据](http://7xt3oh.com1.z0.glb.clouddn.com/blog/qunar.3.png)
+![源码](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/qunar.2.png)
+![真实数据](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/qunar.3.png)
 
 这个代码块里面，第一个 `<b>` 元素中有三个`<i>`元素，其中0和8是假的，是被后面的两个`<b>`元素的9和4覆盖掉了，显示的真实数据是 479 。
 
@@ -336,10 +336,10 @@ d821
 ## 5. 添加干扰字符并隐藏
 这类有微信公共号的文章以及全网代理ip这个网站。
 
-![微信公众号](http://7xt3oh.com1.z0.glb.clouddn.com/blog/wechat.1.png)
+![微信公众号](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/wechat.1.png)
 微信公众号里面，左侧下划线的部分文字为干扰文字，使用css的透明度(opacity)将透明度设置为0隐藏显示。
 
-![全网ip代理](http://7xt3oh.com1.z0.glb.clouddn.com/blog/goubanjia.1.png)
+![全网ip代理](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/goubanjia.1.png)
 全网代理ip这个网站，左侧画细框的部分为干扰文字，使用css的display:none隐藏不显示。
 
 这种方案的话，需要解析每个dom元素，并根据其css样式进行选择正确的字符进行拼装。难度应该不大，没具体实施。

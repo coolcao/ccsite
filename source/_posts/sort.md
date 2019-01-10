@@ -187,20 +187,32 @@ int main(int argc, char const* argv[]) {
  */
 
 void sort(int a[], int length, int start, int end) {
-  if (start == end) {
+  printf("排序区间：a[%d]-a[%d]\n", start, end);
+  if (start >= end) {
     return;
   }
   int idx = start;
   for (int i = start + 1; i <= end; i++) {
+    // 将所有小于基准的值放到该基准值的前面
     if (a[idx] > a[i]) {
-      swapArray(a, idx, i);
-      idx = i;
+      int tmp = a[i];
+      int sidx = i;
+      while (sidx > idx) {
+        a[sidx] = a[sidx - 1];
+        sidx -= 1;
+      }
+      a[idx] = tmp;
+      idx += 1;
     }
   }
+  for (int i = 0; i < length; i++) {
+    printf("%d ", a[i]);
+  }
+  printf("\n-----------------------\n");
   if (idx > 0) {
     sort(a, length, start, idx - 1);
   }
-  if (idx < LEN - 1) {
+  if (idx < length - 1) {
     sort(a, length, idx + 1, end);
   }
 }

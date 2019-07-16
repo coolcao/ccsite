@@ -192,12 +192,6 @@ links:
   腾讯Alloy: http://www.alloyteam.com/
 
 # Gitment comments
-gitment:
-  enable: true
-  owner: coolcao
-  repo: coolcao.github.io
-  client_id: c34b68cf42a7cec0995b
-  client_secret: d907fba48c8aa96e455e09802c5426bdcccf713c
 
 
 # ---------------------------------------------------------------

@@ -389,6 +389,7 @@ func uniquePathsWithObstacles(obstacleGrid [][]int) int {
     for i := 0; i < rows; i++ {
         for j := 0; j < cols; j++ {
             current := obstacleGrid[i][j]
+            // 初始位置或遇到障碍物
             if current == 1 || (i == 0 && j == 0) {
                 continue
             }

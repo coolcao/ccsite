@@ -42,17 +42,17 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.
 
 ```golang
 func maxProfit(prices []int) int {
-	length := len(prices)
-	max := 0
-	for i := 0; i < length-1; i++ {
-		for j := i + 1; j < length; j++ {
-			diff := prices[j] - prices[i]
-			if max < diff {
-				max = diff
-			}
-		}
-	}
-	return max
+    length := len(prices)
+    max := 0
+    for i := 0; i < length-1; i++ {
+        for j := i + 1; j < length; j++ {
+            diff := prices[j] - prices[i]
+            if max < diff {
+                max = diff
+            }
+        }
+    }
+    return max
 }
 ```
 
@@ -69,23 +69,23 @@ func maxProfit(prices []int) int {
 ```golang
 func maxProfit(prices []int) int {
     length := len(prices)
-	if length == 0 {
-		return 0
-	}
+    if length == 0 {
+        return 0
+    }
 
-	minPrice, maxProfit := prices[0], -1
+    minPrice, maxProfit := prices[0], -1
 
-	for _, p := range prices {
-		if p < minPrice {
-			minPrice = p
-		}
-		profit := p - minPrice
-		if profit > maxProfit {
-			maxProfit = profit
-		}
-	}
+    for _, p := range prices {
+        if p < minPrice {
+            minPrice = p
+        }
+        profit := p - minPrice
+        if profit > maxProfit {
+            maxProfit = profit
+        }
+    }
 
-	return maxProfit
+    return maxProfit
 }
 ```
 
@@ -203,29 +203,29 @@ F(k) = max(F(k-1), Price(k)-minPrice(k))
 好，实现一下代码试试：
 ```golang
 func maxProfit4(prices []int) int {
-	length := len(prices)
-	if length == 0 || length == 1 {
-		return 0
-	}
+    length := len(prices)
+    if length == 0 || length == 1 {
+        return 0
+    }
 
     // profits为价格差，从第二天开始，每天相对于前一天的利润
-	profits := make([]int, length-1)
-	for i := 1; i < length; i++ {
-		profits[i-1] = prices[i] - prices[i-1]
-	}
+    profits := make([]int, length-1)
+    for i := 1; i < length; i++ {
+        profits[i-1] = prices[i] - prices[i-1]
+    }
 
-	// maxProfits[i]表示从profits[0]到profits[i]的连续子数组的最大和
-	maxProfits := make([]int, length-1)
-	maxProfits[0] = profits[0]
+    // maxProfits[i]表示从profits[0]到profits[i]的连续子数组的最大和
+    maxProfits := make([]int, length-1)
+    maxProfits[0] = profits[0]
 
-	// 记录maxProfits中的最大值
-	maxProfit := maxProfits[0]
+    // 记录maxProfits中的最大值
+    maxProfit := maxProfits[0]
 
-	for i := 1; i < length-1; i++ {
-		maxProfits[i] = max(profits[i], maxProfits[i-1]+profits[i])
-		maxProfit = max(maxProfits[i], maxProfit)
-	}
-	return max(maxProfit, 0)
+    for i := 1; i < length-1; i++ {
+        maxProfits[i] = max(profits[i], maxProfits[i-1]+profits[i])
+        maxProfit = max(maxProfits[i], maxProfit)
+    }
+    return max(maxProfit, 0)
 }
 ```
 
@@ -257,11 +257,11 @@ maxProfit用以记录maxProfits数组中的最大值，即这个题目中我们�
 
 ```golang
 func climbStairs(n int) int {
-	if n == 1 || n == 2 {
-		return n
-	}
+    if n == 1 || n == 2 {
+        return n
+    }
 
-	return climbStairs(n-1) + climbStairs(n-2)
+    return climbStairs(n-1) + climbStairs(n-2)
 }
 ```
 
@@ -271,12 +271,12 @@ func climbStairs(n int) int {
 
 ```golang
 func climbStairs(n int) int {
-	steps := make([]int, n)
-	steps[0], steps[1] = 1, 2
-	for i := 2; i < n; i++ {
-		steps[i] = steps[i-1] + steps[i-2]
-	}
-	return steps[n-1]
+    steps := make([]int, n)
+    steps[0], steps[1] = 1, 2
+    for i := 2; i < n; i++ {
+        steps[i] = steps[i-1] + steps[i-2]
+    }
+    return steps[n-1]
 }
 ```
 
@@ -303,20 +303,20 @@ func climbStairs(n int) int {
 
 ```golang
 func lis(nums []int) {
-	length := len(nums)
-	if length == 0 {
-		return
-	}
-	lis := make([]int, length)
-	lis[0] = 1
-	maxLen := lis[0]
-	for i := 0; i < length-1; i++ {
-		for j := i + 1; j < length; j++ {
-			if nums[j] > nums[i] {
-				lis[j] = max(lis[i]+1, lis[j])
-				maxLen = max(maxLen, lis[j])
-			}
-		}
+    length := len(nums)
+    if length == 0 {
+        return
+    }
+    lis := make([]int, length)
+    lis[0] = 1
+    maxLen := lis[0]
+    for i := 0; i < length-1; i++ {
+        for j := i + 1; j < length; j++ {
+            if nums[j] > nums[i] {
+                lis[j] = max(lis[i]+1, lis[j])
+                maxLen = max(maxLen, lis[j])
+            }
+        }
     }
     return maxLen
 }

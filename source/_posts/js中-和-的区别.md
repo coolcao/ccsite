@@ -41,12 +41,12 @@ console.log(null == undefined);         //true
 >The comparison x === y, where x and y are values, produces true or false. Such a comparison is performed as follows:
 >1. If Type(x) is different from Type(y), return false.
 >2. If Type(x) is Number, then
-    * a. If x is NaN, return false.
-    * b. If y is NaN, return false.
-    * c. If x is the same Number value as y, return true.
-    * d. If x is `+0` and y is `‐0`,return true.
-    * e. If x is ‐0 and y is +0, return true.
-    * f. Return false.
+>    * a. If x is NaN, return false.
+>    * b. If y is NaN, return false.
+>    * c. If x is the same Number value as y, return true.
+>    * d. If x is `+0` and y is `‐0`,return true.
+>    * e. If x is ‐0 and y is +0, return true.
+>    * f. Return false.
 >3. Return SameValueNonNumber(x, y).
 >**NOTE** This algorithm differs from the SameValue Algorithm in its treatment of signed zeroes and NaNs.
 
@@ -70,7 +70,7 @@ console.log(null == undefined);         //true
 ### Abstract Equality Comparison
 >The comparison x == y, where x and y are values, produces true or false. Such a comparison is performed as follows:
 >1. If Type(x) is the same as Type(y), then
-    a. Return the result of performing Strict Equality Comparison x === y.
+>    a. Return the result of performing Strict Equality Comparison x === y.
 >2. If x is null and y is undefined, return true.
 >3. If x is undefined and y is null, return true.
 >4. If Type(x) is Number and Type(y) is String, return the result of the comparison x == ToNumber(y).
@@ -111,18 +111,17 @@ console.log(null == undefined);         //true
 这里我们看下SameValueNonNumber()和ToPrimitive()两个操作。
 
 ### SameValueNonNumber (x, y)
->The internal comparison abstract operation SameValueNonNumber(x, y), where neither x nor y are Number values, produces
-true or false. Such a comparison is performed as follows:
+>The internal comparison abstract operation SameValueNonNumber(x, y), where neither x nor y are Number values, produces true or false. Such a comparison is performed as follows:
 >1. Assert: Type(x) is not Number.
 >2. Assert: Type(x) is the same as Type(y).
 >3. If Type(x) is Undefined, return true.
 >4. If Type(x) is Null, return true.
 >5. If Type(x) is String, then
-    * a. If x and y are exactly the same sequence of code units (same length and same code units at corresponding indices), return true; otherwise, return false.
+>    * a. If x and y are exactly the same sequence of code units (same length and same code units at corresponding indices), return true; otherwise, return false.
 >6. If Type(x) is Boolean, then
-    * a. If x and y are both true or both false, return true; otherwise, return false.
+>    * a. If x and y are both true or both false, return true; otherwise, return false.
 >7. If Type(x) is Symbol, then
-    * a. If x and y are both the same Symbol value, return true; otherwise, return false.
+>    * a. If x and y are both the same Symbol value, return true; otherwise, return false.
 >8. Return true if x and y are the same Object value. Otherwise, return false.
 
 翻译一下：
@@ -143,14 +142,14 @@ Conversion occurs according to Table 9:
 >Table 9: ToPrimitive Conversions
 
 >|Input Type|Result|
-|----|----|
-|Undefined|Return input.|
-|Null|Return input.|
-|Boolean|Return input.|
-|Number|Return input.|
-|String|Return input.|
-|Symbol|Return input.|
-|Object|Perform the steps following this table.|
+>|----|----|
+>|Undefined|Return input.|
+>|Null|Return input.|
+>|Boolean|Return input.|
+>|Number|Return input.|
+>|String|Return input.|
+>|Symbol|Return input.|
+>|Object|Perform the steps following this table.|
 
 >When Type(input) is Object, the following steps are taken:
 >1. If PreferredType was not passed, let hint be "default".
@@ -158,23 +157,25 @@ Conversion occurs according to Table 9:
 >3. Else PreferredType is hint Number, let hint be "number".
 >4. Let exoticToPrim be ? GetMethod(input, @@toPrimitive).
 >5. If exoticToPrim is not undefined, then
-    * a. Let result be ? Call(exoticToPrim, input, « hint »).
-    * b. If Type(result) is not Object, return result.
-    * c. Throw a TypeError exception.
+>    * a. Let result be ? Call(exoticToPrim, input, « hint »).
+>    * b. If Type(result) is not Object, return result.
+>    * c. Throw a TypeError exception.
 >6. If hint is "default", let hint be "number".
 >7. Return ? OrdinaryToPrimitive(input, hint).
+>
 >When the abstract operation OrdinaryToPrimitive is called with arguments O and hint, the following steps are taken:
+>
 >1. Assert: Type(O) is Object.
 >2. Assert: Type(hint) is String and its value is either "string" or "number".
 >3. If hint is "string", then
-    * a. Let methodNames be « "toString", "valueOf" ».
+>    * a. Let methodNames be « "toString", "valueOf" ».
 >4. Else,
-    * a. Let methodNames be « "valueOf", "toString" ».
+>    * a. Let methodNames be « "valueOf", "toString" ».
 >5. For each name in methodNames in List order, do
-    * a. Let method be ? Get(O, name).
-    * b. If IsCallable(method) is true, then
-        * i. Let result be ? Call(method, O).
-        * ii. If Type(result) is not Object, return result.
+>    * a. Let method be ? Get(O, name).
+>    * b. If IsCallable(method) is true, then
+>        * i. Let result be ? Call(method, O).
+>        * ii. If Type(result) is not Object, return result.
 >6. Throw a TypeError exception.
 
 >**NOTE** When ToPrimitive is called with no hint, then it generally behaves as if the hint were Number. However, objects may over‐ride this behaviour by de ining a @@toPrimitive method. Of the objects de ined in this speci ication only Date objects (see 20.3.4.45) and Symbol objects (see 19.4.3.4) over‐ride the default ToPrimitive behaviour. Date objects treat no hint as if the hint were String.

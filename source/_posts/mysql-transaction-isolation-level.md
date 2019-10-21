@@ -3,8 +3,8 @@ title: MySQL事务隔离级别学习
 date: 2018-08-10 22:40:27
 tags: [MySQL, 事务隔离]
 categories:
-- 技术博客
 - 笔记
+- mysql
 ---
 
 

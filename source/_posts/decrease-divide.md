@@ -11,7 +11,6 @@ categories:
 
 <!-- more -->
 
-
 ## 减治策略
 
 > 减治（decrease-and-conquer）技术利用了一个问题给定实例的解和同样问题较小实例的解之间的某种关系。一旦建立了这种关系，我们既可以从顶向下，也可以从底向上的来运用该关系。   
@@ -92,11 +91,16 @@ f(n) =  |
 
 ## 例题实战
 
+### 1. 对调数组查找
+
 上面说过了，对于二分查找，使用的是减治思想，大家也很熟悉了。那么，对于下面这样一个变种，能否使用分治思想呢？
 
 ```
-对于一个对调有序数组，比如[4,5,6,7,8,9,1,2,3]，即把一个有序数组切开，然后前后对调前后部分。如何更高效率的查找元素。
-给定一个对调有序数组nums和一个要查找的值target，写一个方法进行高效率查找。返回target在nums的索引，如果未查找到，返回-1。
+对于一个对调有序数组，比如[4,5,6,7,8,9,1,2,3]，
+即把一个有序数组切开，然后前后对调前后部分。如何更高效率的查找元素。
+
+给定一个对调有序数组nums和一个要查找的值target，写一个方法进行高效率查找。
+返回target在nums的索引，如果未查找到，返回-1。
 ```
 
 这个题目很有意思，是二分查找的一个变种，只不过将二分的有序数组做了下手脚，切开做了个对调。
@@ -160,6 +164,78 @@ func search(nums []int, start, end int, target int) int {
 }
 
 ```
+
+### 2. 旋转数组查找
+
+上面例子是对调数组的查找，还有一种变形是旋转数组的查找。旋转数组是一有序数组经过某个点旋转而来，比如，数组 `[4,5,6,7,8,9,3,2,1]`是原先有序数组`[1,2,3,4,5,6,7,8,9]`在3和4之间旋转得到的。
+和上面的对调数组不同的是，对调数组两部分都是升序，而旋转数组这个，前段部分区间是升序，后段部分区间是降序。
+
+如果要在这样一个数组中，查找某个元素，具体的解决思路和上面类似。
+
+1. 首先，我们应该先确定有序区间，注意，是有序，可能升序，也可能降序，而上面那个仅仅是升序。
+2. 然后判断target是否在有序区间，如果在，进行二分查找。进行二分查找时，由于可能是升序，也可能是降序，则，这里我们要区分升序降序做不同的二分查找。
+3. 如果不在有序区间，那么，再在剩余区间做步骤1，找有序区间。
+
+```golang
+func binarySearch(nums []int, start, end int, target int, order int) int {
+    if start > end {
+        return -1
+    }
+    mid := (start + end) / 2
+    if nums[mid] == target {
+        return mid
+    }
+    if order == 1 {
+        if nums[mid] > target {
+            return binarySearch(nums, start, mid-1, target, order)
+        }
+        if nums[mid] < target {
+            return binarySearch(nums, mid+1, end, target, order)
+        }
+    }
+    if order == -1 {
+        if nums[mid] < target {
+            return binarySearch(nums, start, mid-1, target, order)
+        }
+        if nums[mid] > target {
+            return binarySearch(nums, mid+1, end, target, order)
+        }
+    }
+
+    return -1
+}
+
+func search2(nums []int, start, end int, target int) int {
+    if start >= end {
+        if nums[start] == target {
+            return start
+        }
+        return -1
+    }
+    mid := (start + end) / 2
+    // 找出有序区间
+    oStart, oEnd := mid+1, end
+    nStart, nEnd := start, mid
+
+    if nums[start] < nums[mid] {
+        oStart, oEnd = start, mid
+        nStart, nEnd = mid+1, end
+    }
+
+    // 判断target是否在前半截升序区间内，如果在，直接二分
+    if target >= nums[oStart] && target <= nums[oEnd] {
+        return binarySearch(nums, oStart, oEnd, target, 1)
+    }
+    if target >= nums[oEnd] && target <= nums[oStart] {
+        return binarySearch(nums, oStart, oEnd, target, -1)
+    }
+    // 如果不在，则继续在剩余非有序区间查找
+    return search2(nums, nStart, nEnd, target)
+}
+```
+
+这里的二分查找和上面稍微不同，加了一个order参数，用以标记是升序二分查找还是降序二分查找。
+由于旋转数组前升序，后降序，因此这里search()方法里面判断是否在有序区间里，也比上面那个例子多了一个判断，我们要判断好是在升序区间还是降序区间。除此之外，其他几乎没什么区别。
 
 ## 总结
 

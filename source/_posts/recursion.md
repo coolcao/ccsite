@@ -376,53 +376,42 @@ func minDepth(root *TreeNode) int {
 本题中，一棵高度平衡二叉树定义为：一个二叉树每个节点的左右两个子树的高度差的绝对值不超过1。
 
 ```golang
+// 判断某个节点是否平衡，并记录其节点深度
+func balanced(root *TreeNode, depth *int) bool {
+    if root == nil {
+        *depth = 0
+        return true
+    }
+    left, right := 0, 0
+    leftBalanced, rightBalanced := balanced(root.Left, &left), balanced(root.Right, &right)
+    if leftBalanced && rightBalanced {
+        gap := left - right
+        if gap <= 1 && gap >= -1 {
+            if left > right {
+                *depth = left + 1
+            } else {
+                *depth = right + 1
+            }
+            return true
+        }
+    }
+    return false
+}
 func isBalanced(root *TreeNode) bool {
     if root == nil {
         return true
     }
-    depths := []int{}
-    depths = visit(root, 0, depths)
-    fmt.Printf("%v\n", depths)
-    if len(depths) == 1 {
-        return depths[0] <= 1
-    }
-    min, max := depths[0], depths[0]
-    for i := 0; i < len(depths); i++ {
-        if min > depths[i] {
-            min = depths[i]
-        }
-        if max < depths[i] {
-            max = depths[i]
-        }
-    }
-
-    return max-min <= 1
-}
-
-func visit(node *TreeNode, level int, arr []int) []int {
-    if node.Left == nil && node.Right == nil {
-        arr = append(arr, level)
-    } else if node.Left == nil {
-        arr = visit(node.Right, level+1, arr)
-    } else if node.Right == nil {
-        arr = visit(node.Left, level+1, arr)
-    } else {
-        arr = append(visit(node.Right, level+1, arr), visit(node.Left, level+1, arr)...)
-    }
-    return arr
+    depth := 0
+    return balanced(root, &depth)
 }
 
 ```
 
 要想判断一棵二叉树是否高度平衡的，我们要找到所有的叶子节点的高度，检查其最大高度以及最小高度的差是否小于等于1即可。
 
-在计算所有子节点的高度时，可以采用上面最大深度和最小深度两个题的方式，这里再定义一个数组，收集所有子节点的高度。
-
-递归访问左右子树，当遇到叶子节点时，将此叶子节点的高度添加到数组。访问完数组后，对比即可。
-
-代码中定义一个visit()函数访问二叉树。接收三个参数，node当前访问的节点，level当前访问节点的高度，arr收集所有叶子节点高度的数组。
-在visit函数中，递归的访问node的左右子树。最后再从arr数组中判断最大高度以及最小高度的差是否相差1即可。
-
+这里我们写一个balanced()函数做辅助，函数在判断一个节点是否平衡的同时，记录其所在根节点的深度。
+如果节点平衡，记录其深度，如果不平衡，那么直接返回false即可，就没必要再记录其深度了。
+然后递归判断这个子节点的左右子节点是否平衡。
 
 ### 3. 二分查找
 二分查找是在一个有序的数组上进行查找，采用分治的方法将遍历查找的时间复杂度从O(n)优化到O(lgn)。

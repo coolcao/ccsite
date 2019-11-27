@@ -7,3 +7,9 @@ public/
 .deploy*/
 .project
 *.swp
+*.pdf
+*.epub
+*.mobi
+README.md
+SUMMARY.md
+book.json

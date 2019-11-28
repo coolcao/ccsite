@@ -1,5 +1,5 @@
 ---
-title: es6初探
+title: ES6初探之Promise
 date: 2016-08-02 20:32:51
 tags: [js,es6]
 categories: 

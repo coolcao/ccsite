@@ -36,7 +36,6 @@ g(21);
 ```
 调用 g 的时候，创建了第一个 堆栈帧 ，包含了 g 的参数和局部变量。当 g 调用 f 的时候，第二个 堆栈帧 就被创建、并置于第一个 堆栈帧 之上，包含了 f 的参数和局部变量。当 f 返回时，最上层的 堆栈帧 就出栈了（剩下 g 函数调用的 堆栈帧 ）。当 g 返回的时候，栈就空了。
 
-[栈的运行示例](http://localhost:4000/2016/12/18/nodejs_at_scale/understanding-the-nodejs-event-loop/)
 [运行动画](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)
 
 ### 堆
@@ -107,26 +106,7 @@ js运行时至少有两个线程：主线程，工作线程
 到这里，可能深入点了，但是还不够。
 事件循环取队列中任务时，顺序如何？具体怎么取，怎么执行呢？
 
-```txt
-   ┌───────────────────────┐
-┌─>│        timers         │
-│  └──────────┬────────────┘
-│  ┌──────────┴────────────┐
-│  │     I/O callbacks     │
-│  └──────────┬────────────┘
-│  ┌──────────┴────────────┐
-│  │     idle, prepare     │
-│  └──────────┬────────────┘      ┌───────────────┐
-│  ┌──────────┴────────────┐      │   incoming:   │
-│  │         poll          │<─────┤  connections, │
-│  └──────────┬────────────┘      │   data, etc.  │
-│  ┌──────────┴────────────┐      └───────────────┘
-│  │        check          │
-│  └──────────┬────────────┘
-│  ┌──────────┴────────────┐
-└──┤    close callbacks    │
-   └───────────────────────┘
-```
+![event-loop](https://img001-10042971.cos.ap-shanghai.myqcloud.com/blog/event-loop.png)
 
 [https://github.com/nodejs/node/blob/master/doc/topics/event-loop-timers-and-nexttick.md](https://github.com/nodejs/node/blob/master/doc/topics/event-loop-timers-and-nexttick.md)
 

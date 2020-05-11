@@ -285,16 +285,21 @@ func totalFruit(tree []int) int {
     length := len(tree)
 
     max := 0
+    // basketMap存储窗口内已收集的水果数量
     basketMap := map[int]int{}
     left, right := 0, 0
 
+    // 当窗口内元素个数小于等于2，增大窗口
     for right < length && len(basketMap) <= 2 {
         rightItem := tree[right]
+        // 增大窗口，右边元素入窗
         basketMap[rightItem]++
         right++
+        // 如果窗口内元素已大于2个，减小窗口
         for len(basketMap) > 2 {
             leftItem := tree[left]
             basketMap[leftItem]--
+            // 如果左边元素出窗后，该类水果数量已为0，则delete该key
             if basketMap[leftItem] == 0 {
                 delete(basketMap, leftItem)
             }

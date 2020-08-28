@@ -222,6 +222,16 @@ vim /etc/hosts
 ```
 ${hostname}为上面设置的主机名
 
+### 网络设置
+```
+pacman -S dhcpcd
+```
+
+```
+systemctl enable dhcpcd
+```
+
+
 ### 本地化
 
 ```

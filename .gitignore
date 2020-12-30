@@ -10,3 +10,5 @@ public/
 *.pdf
 *.epub
 *.mobi
+*.vswp
+_v_recycle_bin/

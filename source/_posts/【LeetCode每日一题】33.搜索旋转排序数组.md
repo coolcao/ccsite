@@ -1,7 +1,7 @@
 ---
 title: 【LeetCode每日一题】33.搜索旋转排序数组.md
 date: 2021-01-05 13:38:57
-tags: [leetcode,算法,二分查找]
+tags: [LeetCode,算法,二分查找]
 categories:
 - 技术博客
 - LeetCode每日一题

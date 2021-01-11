@@ -9,7 +9,6 @@ categories:
 
 [222.完全二叉树的节点个数](https://leetcode-cn.com/problems/count-complete-tree-nodes/description/)
 
-<!-- more -->
 
 > 给出一个完全二叉树，求出该树的节点个数。
 >说明：
@@ -24,6 +23,9 @@ categories:
 >4  5 6
 >```
 >输出: 6
+
+
+<!-- more -->
 
 计算一棵二叉树有多少个节点，我们直接遍历整个树，便可得到结果。
 

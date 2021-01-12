@@ -4,7 +4,7 @@ date: 2021-01-12 13:55:08
 tags: [算法,LeetCode,双指针,二分查找]
 categories:
 - 技术博客
-- LeeCode每日一题
+- LeetCode每日一题
 ---
 
 [287.寻找重复数](https://leetcode-cn.com/problems/find-the-duplicate-number/)

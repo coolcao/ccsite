@@ -38,6 +38,29 @@ iwctl
 
 iwctl工具设置无线网络。连接到网络。
 
+查看设备列表：
+```
+[iwd]# device list
+```
+
+扫描无线网络：
+```
+[iwd]# station [device] scan    // 这里device替换为上面查看到的设备名称，一般为 wlan0
+```
+
+扫描完成后，查看扫描到的无线网络：
+```
+[iwd]# station [device] get-networks
+```
+
+找到要加入的无线网络，连接到无线网络：
+```
+[iwd]# station [device] connect SSID
+```
+这一步会要求输入无线密码，输入密码即可连接到网络。
+
+连接到无线后，即可使用 `exist` 退出 iwctl。
+
 
 ### 更新系统时间
 

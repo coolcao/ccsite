@@ -32,7 +32,7 @@ left,right := 0,0 // 左右指针
 
 // 窗口右边界滑动
 for right < length {
-  window.add(s[right])      // 右元素进窗
+  window.add(arr[right])      // 右元素进窗
   right++                   // 右指针增加
 
   // 窗口满足条件
@@ -69,30 +69,34 @@ for right < length {
 
 ```go
 func maxSubSum(nums []int, n int) int {
-  if n <= 0 {
-    return 0
-  }
-  if n >= len(nums) {
-    n = len(nums)
-  }
-  // sum 标记窗口内元素和
-  // maxSum标记sum的最大值
-  sum, maxSum := 0, 0
-  // 初始化窗口
-  for i := 0; i < n; i++ {
-    sum += nums[i]
-  }
-  maxSum = sum
-  // 滑动窗口
-  for i := n; i < len(nums); i++ {
-    // 左出右进
-    sum = sum - nums[i-n] + nums[i]
-    if sum > maxSum {
-      maxSum = sum
-    }
-  }
+	if len(nums) == 0 {
+		return 0
+	}
 
-  return maxSum
+	// sum标记窗口内元素和
+	// maxSum标记sum的最大值
+	sum, maxSum := 0, 0
+
+	// 窗口左右指针
+	left, right := 0, 0
+
+	for right < len(nums) {
+		// 右侧入窗，增大窗口
+		sum += nums[right]
+		right++
+
+		if maxSum < sum {
+			maxSum = sum
+		}
+
+		// 满足条件，左侧出窗，缩小窗口
+		for right-left >= n && left < right {
+			sum -= nums[left]
+			left++
+		}
+	}
+
+	return maxSum
 
 }
 ```
@@ -109,71 +113,62 @@ func maxSubSum(nums []int, n int) int {
 > 示例 2：
 > 输入：target = 15
 > 输出：`[[1,2,3,4,5],[4,5,6],[7,8]]`
->  
+>  
 > 限制：
 > `1 <= target <= 10^5`
 
-这个题目和上面这个就不大一样了。上面这个窗口的长度是固定的n，而这个，不是固定的。
+这个题目初看上去，和滑动窗口没啥关系。上面说到了，滑动窗口一般解决的是数组或字符串，连续子元素相关的问题。这里没有数组啊？
+虽然没有数组，但这里有一个很关键的点就是，输出要求是 **连续正整数序列**。这里的连续性是使用滑动窗口的关键点。
+
+我们可以将从1到target这个整数序列，抽象成一个数组，然后使用滑动窗口思想，在这个序列上进行滑动求解。
 
 对于滑动窗口思想，有一点需要记住：**窗口只能从左到右，沿一个方向滑动。**
 
-由于窗口长度不定，所以，这里分三种情况：
-1. 窗口内元素和小于target，需要扩大窗口。窗口右边界移动。
-2. 窗口内元素和大于target，需要缩小窗口。窗口左边界移动。
-3. 窗口内元素和等于target，记录结果。窗口向右滑动。
-
 ```go
 func findContinuousSequence(target int) [][]int {
-  // 记录窗口内元素和
-  sum := 0
-  left, right := 1, 3
-  for i := 1; i < right; i++ {
-    sum += i
+  result := [][]int{}
+  if target < 2 {
+    return result
   }
 
-  result := [][]int{}
-  for left <= target-1 {
-    if sum == target {
-      tmp := make([]int, right-left)
-      for i := left; i < right; i++ {
-        tmp[i-left] = i
+  left, right := 1, 1
+  // sum标记窗口内元素的和
+  sum := 0
+  // window记录窗口内所有元素
+  window := []int{}
+
+  for right < target {
+    // 右侧元素进窗
+    window = append(window, right)
+    sum += right
+    right++
+
+    // 当窗口内元素满足条件时，即元素和大于等于target时
+    // 左侧元素出窗
+    for sum >= target && left < right {
+      if sum == target {
+        result = append(result, window)
       }
-      result = append(result, tmp)
-      // 窗口向右滑动
-      left, right = left+1, left+3
-      sum = (left + left + 1)
-    } else if sum < target {
-      // 和小于target，窗口右侧向右移动
-      sum += right
-      right++
-    } else if sum > target {
-      // 和大于target，窗口左侧向右移动
+      window = window[1:]
       sum -= left
       left++
     }
 
-    // 如果窗口长度为2，且窗口内元素已经大于target，则可以终止滑动了
-    if right-left == 2 && sum > target {
-      break
-    }
-
   }
-
   return result
 }
-
 ```
 
 ## 长度最小的子数组
->给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组，并返回其长度。如果不存在符合条件的连续子数组，返回 0。
+>给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组，并返回其长度。如果不存在符合条件的连续子数组，返回 0。
 >
->示例: 
+>示例: 
 >输入: s = 7, nums = [2,3,1,2,4,3]
 >输出: 2
->解释: 子数组 [4,3] 是该条件下的长度最小的连续子数组。
+>解释: 子数组 [4,3] 是该条件下的长度最小的连续子数组。
 >
 >进阶:
->如果你已经完成了O(n) 时间复杂度的解法, 请尝试 O(n log n) 时间复杂度的解法。
+>如果你已经完成了O(n) 时间复杂度的解法, 请尝试 O(n log n) 时间复杂度的解法。
 
 这个问题可以说是上面一个题目的变形，上面一个是和正好等于target，而这个是求和大于等于target的最小子序列长度。
 上面这个题目窗口长度是固定的，这个是变长的。但其实利用滑动窗口的思想，难度也算简单。
@@ -186,45 +181,31 @@ func findContinuousSequence(target int) [][]int {
 
 ```go
 func minSubArrayLen(s int, nums []int) int {
-    length := len(nums)
+	length := len(nums)
+	left, right := 0, 0
+	sum := 0
+	minLen := length
 
-    min := length + 1
+	for right < length {
+		sum += nums[right]
+		right++
 
-    // 滑动窗口的左右指针
-    left, right := 0, 0
-    // 窗口内元素的和
-    sum := 0
-    // 当和小于s时，增大窗口
-    for sum < s && right < length {
+		for sum >= s && left < right {
+			if minLen > right-left {
+				minLen = right - left
+			}
 
-        // 如果最小窗口长度已经是1，那么窗口可终止滑动
-        if min == 1 {
-            break
-        }
+			sum -= nums[left]
+			left++
+		}
 
-        sum += nums[right]
-        right++
-
-        // 当和大于等于s时，缩小窗口
-        for sum >= s {
-            // 比较此时窗口长度与记录的最小长度
-            if min > right-left {
-                min = right - left
-            }
-            sum -= nums[left]
-            left++
-        }
-    }
-    if min == length+1 {
-        return 0
-    }
-    return min
+	}
+	return minLen
 }
-
 ```
 
 ## 水果成篮
-> 在一排树中，第 i 棵树产生 tree[i] 型的水果。
+> 在一排树中，第 i 棵树产生 tree[i] 型的水果。
 >你可以从你选择的任何树开始，然后重复执行以下步骤：
 >
 >1. 把这棵树上的水果放进你的篮子里。如果你做不到，就停下来。
@@ -370,7 +351,7 @@ func lengthOfLongestSubstring(str string) int {
 
 ## 字符串的排列
 
-> 给定两个字符串 s1 和 s2，写一个函数来判断 s2 是否包含 s1 的排列。
+> 给定两个字符串 s1 和 s2，写一个函数来判断 s2 是否包含 s1 的排列。
 >
 > 换句话说，第一个字符串的排列之一是第二个字符串的子串。
 >
@@ -382,7 +363,7 @@ func lengthOfLongestSubstring(str string) int {
 > 示例2:
 > 输入: s1= "ab" s2 = "eidboaoo"
 > 输出: False
->  
+>  
 > 注意：
 > 输入的字符串只包含小写字母
 > 两个字符串的长度都在 [1, 10,000] 之间
@@ -512,7 +493,7 @@ func minWindow(s string, t string) string {
 ```
 
 ## 滑动窗口最大值
-> 给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+> 给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
 >
 > 返回滑动窗口中的最大值。
 >
@@ -534,11 +515,11 @@ func minWindow(s string, t string) string {
 > 1  3  -1  -3 [5  3  6] 7       6
 > 1  3  -1  -3  5 [3  6  7]      7
 > ```
- 
+ 
 > 提示：
 > 1 <= nums.length <= 10^5
-> -10^4 <= nums[i] <= 10^4
-> 1 <= k <= nums.length
+> -10^4 <= nums[i] <= 10^4
+> 1 <= k <= nums.length
 
 这个从题目上就说的很直白，滑动窗口的最大值。输入一个数组和一个窗口的长度，然后输出这个窗口依次从左滑动到右时，窗口内的最大值。
 

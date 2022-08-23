@@ -33,7 +33,7 @@ skip_render:
 new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
-external_link: true # Open external links in new tab
+#external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -71,23 +71,22 @@ theme: next
 
 #RSS订阅
 plugin:
-        - hexo-generator-feed
+  - hexo-generator-feed
 feed:
-        type: atom
-        path: atom.xml
-        limit: 20
-        hub:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-        type: git
-        repo:
-                #github: git@github.com:coolcao/coolcao.github.io.git,master
-                #coding: git@git.coding.net:coolcao/coolcao.git
+  type: git
+  repo:
+    #github: git@github.com:coolcao/coolcao.github.io.git,master
+    #coding: git@git.coding.net:coolcao/coolcao.git
 
-                github: git@github.com:coolcao/coolcao.github.io.git,master
-                coding: git@git.coding.net:coolcao/coolcao.git
+    github: git@github.com:coolcao/coolcao.github.io.git,master
 
-        #repository: git@github.com:coolcao/coolcao.github.io.git
-        branch: master
+  #repository: git@github.com:coolcao/coolcao.github.io.git
+  branch: master

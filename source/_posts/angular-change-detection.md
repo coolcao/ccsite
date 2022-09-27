@@ -1,5 +1,5 @@
 ---
-title: angular-change-detection
+title: 深入理解Angular变更检测(翻译)
 date: 2022-09-27 14:49:25
 tags: [Angular, 变更检测]
 categories:

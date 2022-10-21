@@ -19,17 +19,19 @@ Java 的 Stream 有一个非常重要且有用的操作符 `groupingBy`，可以
 
 ```java
 List<String> names = Arrays.asList(
-"Tom", "Jack", "Lily", "Alex",
-"Jame", "Jack", "Lucy", "Alex",
-"Tom", "Lily", "Lucy", "Jame", "Lucy");
-
-Map<String, Long> namesCount = names
-    .stream()
-    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        "Tom", "Jack", "Lily", "Alex",
+        "Jame", "Jack", "Lucy", "Alex",
+        "Tom", "Lily", "Lucy", "Jame", "Lucy");
+Map<String, Long> namesCount = names.stream().collect(
+        Collectors.groupingBy(
+                Function.identity(),
+                Collectors.counting()
+        )
+);
 System.out.println(namesCount);
 
 // 结果
-// {Alex=2, Tom=2, Lucy=3, Jame=2, Jack=2, Lily=2}
+// {"Alex":2,"Tom":2,"Lucy":3,"Jame":2,"Jack":2,"Lily":2}
 ```
 
 `groupingBy()`操作符接收两个参数，第一个是指定分组的 `key`，第二个参数是实现聚合计算的下游流。
@@ -53,12 +55,16 @@ datas.add(new ProductSold("电动车", "交通",2549, 482));
 System.out.println(JSON.toJSONString(datas));
 
 // 按分类category进行分组统计
-Map<String, Long> categoryResult = datas.stream()
-    .collect(Collectors.groupingBy(ProductSold::getCategory, Collectors.counting()));
+Map<String, Long> categoryResult = datas.stream().collect(
+        Collectors.groupingBy(
+                ProductSold::getCategory,
+                Collectors.counting()
+        )
+);
 System.out.println(categoryResult);
 
 // 结果
-// {数码产品=4, 家电=3, 交通=2}
+// {"数码产品":4,"家电":3,"交通":2}
 ```
 
 ## 自定义聚合规则
@@ -67,22 +73,48 @@ System.out.println(categoryResult);
 
 ```java
 // 按category进行分组统计，销量，销售额，占比等
-Map<String, CategoryResult> categoryResultMap = datas.stream()
-    .collect(Collectors.groupingBy(
-        ProductSold::getCategory,
-        Collectors.collectingAndThen(Collectors.toList(), list -> {
-            long count = list.stream().count();
-            double soldAmount = list.stream().map(item -> item.getPrice()*item.getSoldCount()).reduce(0d, (sum, item) -> sum+item);
-            String precent = BigDecimal.valueOf(count).divide(BigDecimal.valueOf(datas.size()), 4, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)).toString() + "%";
+Map<String, CategoryResult> categoryResultMap = datas.stream().collect(
+        Collectors.groupingBy(
+                ProductSold::getCategory,
+                Collectors.collectingAndThen(
+                        Collectors.toList(),
+                        list -> {
+                            long count = list.stream().count();
+                            double soldAmount = list.stream()
+                                    .map(item -> item.getPrice() * item.getSoldCount())
+                                    .reduce(0d, (sum, item) -> sum + item);
+                            String precent = BigDecimal.valueOf(count)
+                                    .divide(BigDecimal.valueOf(datas.size()), 4, RoundingMode.HALF_UP)
+                                    .multiply(BigDecimal.valueOf(100)).toString() + "%";
 
-            return new CategoryResult(count, soldAmount, precent);
-        })
-));
+                            return new CategoryResult(count, soldAmount, precent);
+                        })
+        )
+);
 System.out.println(categoryResultMap);
 
-// 结果
-// {数码产品=CategoryResult{soldCount=4, soldAmount=1237574.0, precent='44.4400%'}, 家电=CategoryResult{soldCount=3, soldAmount=2930863.0, precent='33.3300%'}, 交通=CategoryResult{soldCount=2, soldAmount=2001569.0, precent='22.2200%'}}
+```
 
+结果：
+
+```json
+{
+  "数码产品": {
+    "precent": "44.4400%",
+    "soldAmount": 1237574.0,
+    "soldCount": 4
+  },
+  "家电": {
+    "precent": "33.3300%",
+    "soldAmount": 2930863.0,
+    "soldCount": 3
+  },
+  "交通": {
+    "precent": "22.2200%",
+    "soldAmount": 2001569.0,
+    "soldCount": 2
+  }
+}
 ```
 
 ## 自定义分组的 key
@@ -93,37 +125,129 @@ System.out.println(categoryResultMap);
 // 按价格区间分组，自定义分组key
 List<String> priceRanges = Arrays.asList("0-500", "501-1000", "1001-2000", "2001-3000", ">3000");
 
-Map<String, ProductSoldResult> resultMap = datas.stream().collect(Collectors.groupingBy(item -> {
-    double price = item.getPrice();
-    String key = priceRanges.get(0);
+Map<String, ProductSoldResult> resultMap = datas.stream().collect(
+        Collectors.groupingBy(item -> {
+            double price = item.getPrice();
+            String key = priceRanges.get(0);
 
-    if (price>500 && price <= 1000) key = priceRanges.get(1);
-    if (price>1001 && price <= 2000) key = priceRanges.get(2);
-    if (price>2001 && price <= 3000) key = priceRanges.get(3);
-    if (price > 3000) key = priceRanges.get(4);
-    return key;
+            if (price > 500 && price <= 1000) key = priceRanges.get(1);
+            if (price > 1001 && price <= 2000) key = priceRanges.get(2);
+            if (price > 2001 && price <= 3000) key = priceRanges.get(3);
+            if (price > 3000) key = priceRanges.get(4);
+            return key;
 
-}, Collectors.collectingAndThen(Collectors.toList(), list -> {
-    long count = list.stream().count();
-    double soldAmount = list.stream().map(item -> item.getPrice()*item.getSoldCount()).reduce(0d, (sum, item) -> sum+item);
+        }, Collectors.collectingAndThen(
+                Collectors.toList(), list -> {
+                    long count = list.stream().count();
+                    double soldAmount = list.stream()
+                            .map(item -> item.getPrice() * item.getSoldCount())
+                            .reduce(0d, (sum, item) -> sum + item);
 
-    ProductSoldResult result = new ProductSoldResult();
-    result.setSoldAmount(soldAmount);
-    result.setSoldCount((int)count);
-    result.setPrecent(BigDecimal.valueOf(count).divide(BigDecimal.valueOf(datas.size()), 4, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)).toString() + "%");
-    result.setProductSolds(list);
+                    ProductSoldResult result = new ProductSoldResult();
+                    result.setSoldAmount(soldAmount);
+                    result.setSoldCount((int) count);
+                    result.setPrecent(BigDecimal.valueOf(count)
+                            .divide(BigDecimal.valueOf(datas.size()), 4, RoundingMode.HALF_UP)
+                            .multiply(BigDecimal.valueOf(100)).toString() + "%");
+                    result.setProductSolds(list);
 
-    return result;
-})));
+                    return result;
+                })
+        )
+);
 
 
 for (Map.Entry<String, ProductSoldResult> entry: resultMap.entrySet()) {
     System.out.println(entry.getKey() + ":" + entry.getValue());
 }
 
-// 结果
-// 1001-2000:ProductSoldResult{soldCount=2, soldAmount=1508658.0, precent='22.2200%', productSolds=[ProductSold{name='空调', category='家电', price=1589.0, soldCount=463}, ProductSold{name='自行车', category='交通', price=1549.0, soldCount=499}]}
-// 501-1000:ProductSoldResult{soldCount=2, soldAmount=366261.0, precent='22.2200%', productSolds=[ProductSold{name='移动硬盘', category='数码产品', price=799.0, soldCount=231}, ProductSold{name='净水器', category='家电', price=588.0, soldCount=309}]}
-// 0-500:ProductSoldResult{soldCount=2, soldAmount=585161.0, precent='22.2200%', productSolds=[ProductSold{name='键盘', category='数码产品', price=199.0, soldCount=2390}, ProductSold{name='鼠标', category='数码产品', price=159.0, soldCount=689}]}
-// 2001-3000:ProductSoldResult{soldCount=3, soldAmount=3709926.0, precent='33.3300%', productSolds=[ProductSold{name='电脑', category='数码产品', price=2999.0, soldCount=156}, ProductSold{name='冰箱', category='家电', price=2588.0, soldCount=778}, ProductSold{name='电动车', category='交通', price=2549.0, soldCount=482}]}
+```
+
+结果如下：
+
+```json
+{
+  "1001-2000": {
+    "precent": "22.2200%",
+    "productSolds": [
+      {
+        "category": "家电",
+        "name": "空调",
+        "price": 1589.0,
+        "soldCount": 463
+      },
+      {
+        "category": "交通",
+        "name": "自行车",
+        "price": 1549.0,
+        "soldCount": 499
+      }
+    ],
+    "soldAmount": 1508658.0,
+    "soldCount": 2
+  },
+  "501-1000": {
+    "precent": "22.2200%",
+    "productSolds": [
+      {
+        "category": "数码产品",
+        "name": "移动硬盘",
+        "price": 799.0,
+        "soldCount": 231
+      },
+      {
+        "category": "家电",
+        "name": "净水器",
+        "price": 588.0,
+        "soldCount": 309
+      }
+    ],
+    "soldAmount": 366261.0,
+    "soldCount": 2
+  },
+  "0-500": {
+    "precent": "22.2200%",
+    "productSolds": [
+      {
+        "category": "数码产品",
+        "name": "键盘",
+        "price": 199.0,
+        "soldCount": 2390
+      },
+      {
+        "category": "数码产品",
+        "name": "鼠标",
+        "price": 159.0,
+        "soldCount": 689
+      }
+    ],
+    "soldAmount": 585161.0,
+    "soldCount": 2
+  },
+  "2001-3000": {
+    "precent": "33.3300%",
+    "productSolds": [
+      {
+        "category": "数码产品",
+        "name": "电脑",
+        "price": 2999.0,
+        "soldCount": 156
+      },
+      {
+        "category": "家电",
+        "name": "冰箱",
+        "price": 2588.0,
+        "soldCount": 778
+      },
+      {
+        "category": "交通",
+        "name": "电动车",
+        "price": 2549.0,
+        "soldCount": 482
+      }
+    ],
+    "soldAmount": 3709926.0,
+    "soldCount": 3
+  }
+}
 ```

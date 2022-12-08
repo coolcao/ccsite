@@ -157,7 +157,7 @@ export declare class HttpUrlEncodingCodec implements HttpParameterCodec {
 }
 ```
 
-我们看一下 `HttpUrlEncodingCodec` 类的具体实现方法，在 `@angular/common/esm2015/http/src/params.js` 中可以看到：
+我们看一下 `HttpUrlEncodingCodec` 类的具体实现方法，在 `angular/packages/common/http/src/params.ts` 中可以看到：
 
 ```typescript
 /**
@@ -220,24 +220,22 @@ export class HttpUrlEncodingCodec {
  * Encode input string with standard encodeURIComponent and then un-encode specific characters.
  */
 const STANDARD_ENCODING_REGEX = /%(\d[a-f0-9])/gi;
-const STANDARD_ENCODING_REPLACEMENTS = {
+const STANDARD_ENCODING_REPLACEMENTS: { [x: string]: string } = {
   "40": "@",
   "3A": ":",
   "24": "$",
   "2C": ",",
   "3B": ";",
-  "2B": "+",
   "3D": "=",
   "3F": "?",
   "2F": "/",
 };
-function standardEncoding(v) {
-  return encodeURIComponent(v).replace(STANDARD_ENCODING_REGEX, (s, t) => {
-    var _a;
-    return (_a = STANDARD_ENCODING_REPLACEMENTS[t]) !== null && _a !== void 0
-      ? _a
-      : s;
-  });
+
+function standardEncoding(v: string): string {
+  return encodeURIComponent(v).replace(
+    STANDARD_ENCODING_REGEX,
+    (s, t) => STANDARD_ENCODING_REPLACEMENTS[t] ?? s
+  );
 }
 ```
 

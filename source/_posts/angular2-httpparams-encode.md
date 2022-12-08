@@ -226,6 +226,7 @@ const STANDARD_ENCODING_REPLACEMENTS: { [x: string]: string } = {
   "24": "$",
   "2C": ",",
   "3B": ";",
+  "2B": "+",
   "3D": "=",
   "3F": "?",
   "2F": "/",
@@ -242,6 +243,40 @@ function standardEncoding(v: string): string {
 这个 `standardEncoding()` 函数其实就是调用了标准的 `encodeURIComponent()` 函数，只不过对几个特殊的字符（`@:$;,+=?/`）跳过，不做转码。
 
 所以，解决方案就如同上面所说，我们自己实现一个 `HttpParameterCodec` ，将其上面几个所谓的特殊字符也一同转码了即可。
+
+---
+
+Angular14 更新：
+Angular 14 中 `standardEncoding()` 方法有更新，去掉了对 `+` 字符的转换：
+
+```typescript
+/**
+ * Encode input string with standard encodeURIComponent and then un-encode specific characters.
+ */
+/**
+ * Encode input string with standard encodeURIComponent and then un-encode specific characters.
+ */
+const STANDARD_ENCODING_REGEX = /%(\d[a-f0-9])/gi;
+const STANDARD_ENCODING_REPLACEMENTS: { [x: string]: string } = {
+  "40": "@",
+  "3A": ":",
+  "24": "$",
+  "2C": ",",
+  "3B": ";",
+  "3D": "=",
+  "3F": "?",
+  "2F": "/",
+};
+
+function standardEncoding(v: string): string {
+  return encodeURIComponent(v).replace(
+    STANDARD_ENCODING_REGEX,
+    (s, t) => STANDARD_ENCODING_REPLACEMENTS[t] ?? s
+  );
+}
+```
+
+即从 Angular 14 开始，Angular 14 默认会对 `+` 字符进行百分比转码，而不用再自己重写 `HttpParameterCodec` 了。
 
 ### 问题追踪
 

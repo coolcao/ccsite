@@ -1,7 +1,7 @@
 ---
 title: Angular使用RxJS实现全局loading
 date: 2022-09-27 15:00:32
-tags: [Angular]
+tags: [Angular, RxJS, 前端]
 categories:
   - 技术博客
   - 原创

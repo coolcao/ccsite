@@ -1,7 +1,7 @@
 ---
 title: Angular中使用RxJS的几种常用方法（翻译）
 date: 2022-09-27 16:41:41
-tags: [Angular, RxJS]
+tags: [Angular, RxJS, 前端]
 categories:
   - 技术博客
   - 翻译

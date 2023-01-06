@@ -2,7 +2,7 @@
 title: Angular依赖注入实现原理解析
 author: coolcao
 date: 2022-12-15 00:24:25
-tags: [Angular, 依赖注入]
+tags: [Angular, 依赖注入, 前端]
 categories:
   - 技术博客
   - 原创

@@ -1,7 +1,7 @@
 ---
 title: 深入理解Angular2的单向数据流（翻译）
 date: 2022-09-29 10:11:23
-tags: [Angular, 单向数据流]
+tags: [Angular, 单向数据流, 前端]
 categories:
   - 技术博客
   - 翻译

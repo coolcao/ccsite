@@ -1,7 +1,7 @@
 ---
 title: Angular使用state实现返回上一页功能
 date: 2022-09-27 14:57:49
-tags: [Angular]
+tags: [Angular, 前端]
 categories:
   - 技术博客
   - 原创

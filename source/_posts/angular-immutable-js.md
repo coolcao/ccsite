@@ -1,7 +1,7 @@
 ---
 title: Angular集成immutable-js以提高性能
 date: 2022-09-27 14:53:54
-tags: [Angular]
+tags: [Angular, 单向数据流, 不可变数据, 前端]
 categories:
   - 技术博客
   - 原创

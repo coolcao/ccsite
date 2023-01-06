@@ -1,7 +1,7 @@
 ---
 title: Angular-变更检测的通俗易懂的解释(翻译)
 date: 2022-09-29 14:51:56
-tags: [Angular, 变更检测]
+tags: [Angular, 变更检测, 前端]
 categories:
   - 技术博客
   - 翻译

@@ -212,10 +212,10 @@ auto_excerpt:
 
 # MathJax Support
 mathjax:
-  enable: true
+  enable: false
   engine: mathjax
-  # cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-  cdn: /js/mathjax.js
+  cdn: //cdn.jsdelivr.net/npm/mathjax@2.7.9/unpacked/MathJax.min.js
+  #cdn: /js/mathjax.js
 
 # Swiftype Search API Key
 #swiftype_key:

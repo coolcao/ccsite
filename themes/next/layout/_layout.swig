@@ -73,7 +73,10 @@
   {% include '_scripts/baidu-push.swig' %}
   {% include '_scripts/third-party/schedule.swig' %}
 
+  {#
   <script src="/js/asciinema-player.js"></script>
+  #}
+  <script src="https://cdn.jsdelivr.net/npm/asciinema-player@2.6.1/resources/public/js/asciinema-player.min.js"></script>
 
 </body>
 </html>

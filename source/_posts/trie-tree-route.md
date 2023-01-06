@@ -29,34 +29,32 @@ categories:
 ### 前缀树的基本实现
 
 ```ts
-// 树节点
-class TierNode {
-  isWord: boolean; // 从根节点到该节点的路径是否是一个单词
-  next: Map<string, TierNode>; // 子节点
+// Trie节点
+class TrieNode {
+  isWord: boolean;
+  next: Map<string, TrieNode>;
   constructor() {
     this.isWord = false;
     this.next = new Map();
   }
 }
 
-class TierTree {
-  root: TierNode;
+class TrieTree {
+  root: TrieNode;
   constructor() {
-    this.root = new TierNode();
+    this.root = new TrieNode();
   }
 
-  // 插入
   insert(word: string) {
     let cur = this.root;
     for (const c of word) {
       if (!cur.next.has(c)) {
-        cur.next.set(c, new TierNode());
+        cur.next.set(c, new TrieNode());
       }
       cur = cur.next.get(c);
     }
     cur.isWord = true;
   }
-  // 查找
   search(word: string) {
     let cur = this.root;
     for (const c of word) {
@@ -65,6 +63,7 @@ class TierTree {
       }
       cur = cur.next.get(c);
     }
+
     return cur.isWord;
   }
 }

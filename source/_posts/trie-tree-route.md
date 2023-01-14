@@ -67,6 +67,14 @@ class TrieTree {
     return cur.isWord;
   }
 }
+
+const tree = new TrieTree();
+tree.insert('abc');
+tree.insert('adc');
+tree.insert('abcd');
+
+tree.search('ad');  // false
+tree.search('abc'); // true
 ```
 
 ## 动态路由实现

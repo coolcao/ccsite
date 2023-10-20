@@ -122,7 +122,7 @@
             {% if toc.length <= 1 %}
               <p class="post-toc-empty">{{ __('post.toc_empty') }}</p>
             {% else %}
-              <div class="post-toc-content">{{ toc }}</div>
+              <div class="post-toc-content">{{ toc | url_decode }}</div>
             {% endif %}
           </div>
         </section>

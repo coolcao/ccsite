@@ -26,6 +26,35 @@ categories:
 
 ![1](https://img.coolcao.site/file/a69057e7c09c10aa4f1a4.png)
 
+
+```ts
+this.service.getUsers().subscribe(data => {
+      if (data) {
+        this.user = data as User;
+        this.user.age = AES.decrypt(this.user.age, 'test123').toString(enc.Utf8)
+
+        const canvas: HTMLCanvasElement = document.getElementById('age') as HTMLCanvasElement;
+
+        if (canvas) {
+          const ctx = canvas.getContext('2d');
+
+          if (ctx) {
+            // ctx.scale(window.devicePixelRatio,window.devicePixelRatio);
+            ctx.font = "28px serif";
+            ctx.fillText(this.user!.age, 0, 30)
+          }
+        }
+      }
+    })
+```
+
+模板文件：
+```html
+<div class="content" role="main">
+  <div *ngIf="user"><span style="font-size: 28px;">{{user.name}}</span><canvas id="age" width="30" height="30"></canvas></div>
+</div>
+```
+
 前端拿到数据后，使用相同的密钥和相同的加密方法对年龄字段进行解密，得到原始数据后，动态渲染到canvas上，效果如下：
 
 ![2](https://img.coolcao.site/file/3873566dd0e5b54e7877b.png)

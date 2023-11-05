@@ -436,57 +436,56 @@ func uniquePathsWithObstacles(obstacleGrid [][]int) int {
 从C2到B城市乘坐火车需要38分钟，乘坐汽车需要32分钟，C2城市火车站到汽车站需要8分中。
 ```
 
-这个问题比上面几个问题稍微复杂点，又是火车，又是汽车，还有火车和汽车的交换等等，让人猝不及防啊。
+这个问题比上面几个问题稍复杂点，这里交通方式有火车，有汽车，还涉及火车与汽车的换乘。
 
-但其实仔细分析啊，也不复杂。慢慢分析来。
+首先分析一下题目中给出的例子，画如下示意图：
 
-首先，从一个城市到下一个城市，只有两种方式，要么坐火车，要么坐汽车，当然，这里涉及到换乘问题，比如如果从上一站是坐火车来的，去下一站要做坐汽车的话，还要加上该城市从火车站到汽车站的时间。
+![图片](https://img.coolcao.site/file/84b6d61a446b0a3081dcb.png)
 
-那么，使用动态规划算法，应该怎么去拆分问题，怎么去定义状态以及状态转移公式呢？
+题目中给出的时间数组表示上一个城市与下一个城市的交通时间花费，因此总的城市是数组长度加1。
 
-```
-1. 定义F_Train(k)为到第k个城市火车站所用的最小时间，定义F_Bus(k)为到第k个城市汽车站所用的最小时间
-2. 那么，到达第k个城市所用的最小时间即是min(F_Train(k), F_Bus(k))
-3. 对于
-    F_Train(k) = min(F_Train(k-1)+times[k][0], F_Bus(k-1) + times[k][2] + times[k][0]),
-    F_Bus(k) = min(F_Bus(k-1)+time[k][1],F_Train(k-1)+times[k][2]+times[k][1])
-4. 要求的就是min(F_Train(n), F_Bus(n))
-```
+对于中间任意城市而言，有两种方式到达：1. 乘坐火车 2. 乘坐汽车
+我们定义 `train[i]` 为到达第i个城市时乘坐火车所需的最小时间，定义 `bus[i]` 为到达第i个城市乘坐汽车所需的最小时间，那么到达该城市所需的最小时间两者取小即可。
 
-解释一下，定义的状态以及状态转移公式什么意思。
-为什么要定义两个状态 F_Train(k)和 F_Bus(k)分别表示乘坐火车和汽车到第 k 个城市的最小时间呢？只定义一个不行么？
-只定义一个肯定是不行的，因为我们到达一个城市有两种选择，乘坐火车或乘坐汽车。如果只定义一个状态，代表到达第 k 个城市所需的最小时间，那么，再递推到下一个城市时，我们不确定是乘坐火车来的还是乘坐汽车来的。最重要的一点是，即使多记录一个是坐火车还是坐汽车到达的第 k 个城市，再往下一个城市时，加上换乘时间，也不一定是最小时间。什么意思，举个例子：
+对于 `train[i]` 而言：
+1. 可以由上一个城市的火车站乘坐火车而来，此时 `train[i]=train[i-1]+times[i-1][0]`
+2. 也可以由上一个城市的汽车站换乘火车而来，此时 `train[i]=bus[i-1]+times[i-1][2]+times[i-1][0]`
+3. 两者取最小即可
 
-假设，我们到达第 k 个城市，乘坐火车所需最小时间是 40 分钟，乘坐汽车所需最小时间是 50 分钟，再到下一城市如果乘坐火车需要 50 分钟，乘坐汽车需要 30 分钟，火车换乘汽车需要 15 分钟，那么最小时间是 50+30=80 分钟，而不是 40+15+30=85 分钟。
+同理，对于 `bus[i]` 而言：
+1. 可以由上一个城市的汽车站乘坐汽车而来，此时 `bus[i]=bus[i-1]+times[i-1][1]`
+2. 也可以由上一个城市的火车站换乘汽车而来，此时 `bus[i]=train[i-1]+times[i-1][2]+times[i-1][1]`
+3. 两者取最小即可
 
-定义好了状态以及状态转移公式，我们就可以写代码了。
+对于初始状态 `train[0]` 和 `bus[0]` ，由于题目中指出小明家到A城市的火车站和汽车站所需时间都是30分钟，因此两者都初始化为30，即：
+
+`train[0]=30, bus[0]=30`
+
+有了初始状态以及状态转移公式，代码就好写了。
 
 ```golang
 func minTime(times [][]int) int {
-	citys := len(times)
-	if citys == 0 {
-		return 0
-	}
-	// minTrain,minBus分别标识坐火车和坐汽车到达某一城市所需的最少时间
-	minTrain, minBus := times[0][0], times[0][1]
-	// minTime标识到达某一城市所需的最少时间
-	minTime := min(minTrain, minBus)
+	n := len(times)
 
-	for i := 1; i < citys; i++ {
-		time := times[i]
+	train := make([]int, n+1)
+	bus := make([]int, n+1)
 
-		// timeTrain,timeBus在这里其实就是“下一个”minTrain，minBus。
-		// 由于这里的计算会重复用到上一个minTrain，因此只能重新定义一个变量来标识
-		timeTrain := min(minTrain+time[0], minBus+time[2]+time[0])
-		timeBus := min(minBus+time[1], minTrain+time[2]+time[1])
+	train[0] = 30
+	bus[0] = 30
 
-		minTrain, minBus = timeTrain, timeBus
+	for i := 1; i <= n; i++ {
+		train[i] = min(
+			train[i-1]+times[i-1][0],
+			bus[i-1]+times[i-1][2]+times[i-1][0],
+		)
 
-		minTime = min(minTrain, minBus)
+		bus[i] = min(
+			bus[i-1]+times[i-1][1],
+			train[i-1]+times[i-1][2]+times[i-1][1],
+		)
 	}
 
-	// 最后时间要加30分钟，因为小明从家到A城市的火车站或汽车站都需要30分钟
-	return minTime + 30
+	return min(train[n], bus[n])
 }
 ```
 

@@ -465,27 +465,27 @@ func uniquePathsWithObstacles(obstacleGrid [][]int) int {
 
 ```golang
 func minTime(times [][]int) int {
-	n := len(times)
+    n := len(times)
 
-	train := make([]int, n+1)
-	bus := make([]int, n+1)
+    train := make([]int, n+1)
+    bus := make([]int, n+1)
 
-	train[0] = 30
-	bus[0] = 30
+    train[0] = 30
+    bus[0] = 30
 
-	for i := 1; i <= n; i++ {
-		train[i] = min(
-			train[i-1]+times[i-1][0],
-			bus[i-1]+times[i-1][2]+times[i-1][0],
-		)
+    for i := 1; i <= n; i++ {
+        train[i] = min(
+            train[i-1]+times[i-1][0],
+            bus[i-1]+times[i-1][2]+times[i-1][0],
+        )
 
-		bus[i] = min(
-			bus[i-1]+times[i-1][1],
-			train[i-1]+times[i-1][2]+times[i-1][1],
-		)
-	}
+        bus[i] = min(
+            bus[i-1]+times[i-1][1],
+            train[i-1]+times[i-1][2]+times[i-1][1],
+        )
+    }
 
-	return min(train[n], bus[n])
+    return min(train[n], bus[n])
 }
 ```
 

@@ -1,0 +1,145 @@
+{
+  "main": {
+    "id": "c72a58a799db273a",
+    "type": "split",
+    "children": [
+      {
+        "id": "215c28bbfcf8ce3b",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Angular-模块.md",
+            "mode": "preview",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d91925148813d0ce",
+    "type": "split",
+    "children": [
+      {
+        "id": "1cd69c52b9130edf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0de46a5a4653097e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "acfd48cf85fb113a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": true,
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "534e4975bf8b35bf",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 325.5
+  },
+  "right": {
+    "id": "eebf23e887f40370",
+    "type": "split",
+    "children": [
+      {
+        "id": "4eab3dfd8831be0f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b3071ea1bf2429da",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Angular-模块.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "b04d128f1407aa7f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Angular-模块.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "d041d7537fe092a3",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "dea125d501a57955",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Angular-模块.md"
+              }
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 259.5
+  },
+  "active": "215c28bbfcf8ce3b",
+  "lastOpenFiles": [
+    "Angular汇总.md",
+    "Angular-数据绑定.md",
+    "Angular-组件.md",
+    "Angular-HTTP拦截器.md",
+    "web安全-CSRF攻击.md",
+    "web安全-XSS攻击.md",
+    "Angular-核心概念.md",
+    "yield.md",
+    "TS中命名空间和模块有啥区别.md",
+    "this.md"
+  ]
+}

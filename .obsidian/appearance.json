@@ -1,0 +1,13 @@
+{
+  "cssTheme": "Obsidian Nord",
+  "translucency": false,
+  "theme": "obsidian",
+  "interfaceFontFamily": "FiraCode Nerd Font Mono,UbuntuMono Nerd Font Mono,Droid Sans Mono for Powerline Plus Nerd File Types Mono",
+  "textFontFamily": "FiraCode Nerd Font Mono,UbuntuMono Nerd Font Mono,Droid Sans Mono for Powerline Plus Nerd File Types Mono",
+  "monospaceFontFamily": "FiraCode Nerd Font Mono,UbuntuMono Nerd Font Mono,Droid Sans Mono for Powerline Plus Nerd File Types Mono",
+  "accentColor": "",
+  "baseFontSize": 16,
+  "enabledCssSnippets": [
+    "page-width"
+  ]
+}

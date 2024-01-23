@@ -1,0 +1,166 @@
+{
+  "main": {
+    "id": "c72a58a799db273a",
+    "type": "split",
+    "children": [
+      {
+        "id": "eb26331bff783c9c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ede70964f981456e",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d91925148813d0ce",
+    "type": "split",
+    "children": [
+      {
+        "id": "1cd69c52b9130edf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0de46a5a4653097e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "acfd48cf85fb113a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": true,
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "534e4975bf8b35bf",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "1c05c79c90b6abb3",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 252.5
+  },
+  "right": {
+    "id": "eebf23e887f40370",
+    "type": "split",
+    "children": [
+      {
+        "id": "4eab3dfd8831be0f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b3071ea1bf2429da",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "b04d128f1407aa7f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "d041d7537fe092a3",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "dea125d501a57955",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "obsidian42-text-transporter:Obsidian42 - Text Transporter": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "webpage-html-export:Export Vault to HTML": false,
+      "canvas:新建白板": false,
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "ede70964f981456e",
+  "lastOpenFiles": [
+    "source/_posts/动态规划之买卖股票系列.md",
+    "source/_posts/动态规划之背包问题.md",
+    "README.md",
+    "未命名.md",
+    "Angular依赖注入实现原理解析.md",
+    "类(class).md",
+    "Angular变更检测.md",
+    "DOM树🌲.md",
+    "call和apply.md",
+    "原型（prototype）.md",
+    "生成器Generator.md",
+    "深入理解angular变更检测(翻译).md"
+  ]
+}

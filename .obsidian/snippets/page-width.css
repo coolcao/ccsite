@@ -1,0 +1,81 @@
+/* 超大屏，比如 3440*1440 超款带鱼屏 */
+@media (min-width: 2560px) {
+    body {
+        --file-line-width: 1800px;
+    }
+
+    .markdown-source-view.mod-cm6.is-readable-line-width .cm-sizer {
+        max-width: 2000px;
+        /* 默认最大是700px，所以一定要带上，只要比width大就行。 */
+        width: 1800px;
+        /* 怎么舒服怎么来调整 */
+    }
+
+    .markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+        max-width: 2000px;
+        /* 默认最大是700px，所以一定要带上，只要比width大就行。 */
+        width: 1800px;
+        /* 怎么舒服怎么来调整 */
+    }
+}
+
+/* 普通 1920*1080屏 */
+@media (min-width: 1600px) and (max-width: 2559px) {
+    body {
+        --file-line-width: 1100px;
+    }
+
+    .markdown-source-view.mod-cm6.is-readable-line-width .cm-sizer {
+        max-width: 1200px;
+        /* 默认最大是700px，所以一定要带上，只要比width大就行。 */
+        width: 1100px;
+        /* 怎么舒服怎么来调整 */
+    }
+
+    .markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+        max-width: 1200px;
+        /* 默认最大是700px，所以一定要带上，只要比width大就行。 */
+        width: 1100px;
+        /* 怎么舒服怎么来调整 */
+    }
+}
+
+@media (min-width: 1400px) and (max-width: 1599px) {
+    body {
+        --file-line-width: 900px;
+    }
+
+    .markdown-source-view.mod-cm6.is-readable-line-width .cm-sizer {
+        max-width: 1000px;
+        /* 默认最大是700px，所以一定要带上，只要比width大就行。 */
+        width: 900px;
+        /* 怎么舒服怎么来调整 */
+    }
+
+    .markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+        max-width: 1000px;
+        /* 默认最大是700px，所以一定要带上，只要比width大就行。 */
+        width: 900px;
+        /* 怎么舒服怎么来调整 */
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1399px) {
+    body {
+        --file-line-width: 1000px;
+    }
+
+    .markdown-source-view.mod-cm6.is-readable-line-width .cm-sizer {
+        max-width: 900px;
+        /* 默认最大是700px，所以一定要带上，只要比width大就行。 */
+        width: 850px;
+        /* 怎么舒服怎么来调整 */
+    }
+
+    .markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+        max-width: 900px;
+        /* 默认最大是700px，所以一定要带上，只要比width大就行。 */
+        width: 850px;
+        /* 怎么舒服怎么来调整 */
+    }
+}

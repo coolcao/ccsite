@@ -11,8 +11,13 @@
             "id": "ede70964f981456e",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/NodeJS技术栈处理SSE.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
             }
           }
         ]
@@ -89,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "source/_posts/NodeJS技术栈处理SSE.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,6 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "source/_posts/NodeJS技术栈处理SSE.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +133,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "source/_posts/NodeJS技术栈处理SSE.md"
+              }
             }
           }
         ]
@@ -137,30 +146,64 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "obsidian42-text-transporter:Obsidian42 - Text Transporter": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "webpage-html-export:Export Vault to HTML": false,
       "canvas:新建白板": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false
+      "command-palette:打开命令面板": false,
+      "obsidian42-text-transporter:Obsidian42 - Text Transporter": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "webpage-html-export:Export Vault to HTML": false
     }
   },
   "active": "ede70964f981456e",
   "lastOpenFiles": [
-    "source/_posts/动态规划之买卖股票系列.md",
-    "source/_posts/动态规划之背包问题.md",
-    "README.md",
-    "未命名.md",
-    "Angular依赖注入实现原理解析.md",
-    "类(class).md",
-    "Angular变更检测.md",
-    "DOM树🌲.md",
-    "call和apply.md",
-    "原型（prototype）.md",
-    "生成器Generator.md",
-    "深入理解angular变更检测(翻译).md"
+    "source/_posts/30分钟学会AWK.md",
+    "source/_posts/NodeJS技术栈处理SSE.md",
+    "db.json",
+    "node_modules/highlight.js/types/index.d.ts",
+    "node_modules/highlight.js/types",
+    "node_modules/highlight.js/scss/base16/zenburn.scss",
+    "node_modules/highlight.js/scss/base16/xcode-dusk.scss",
+    "node_modules/highlight.js/scss/base16/woodland.scss",
+    "node_modules/highlight.js/scss/base16/windows-nt.scss",
+    "node_modules/highlight.js/scss/base16/windows-nt-light.scss",
+    "node_modules/highlight.js/scss/base16/windows-high-contrast.scss",
+    "node_modules/highlight.js/scss/base16/windows-high-contrast-light.scss",
+    "node_modules/highlight.js/VERSION_11_UPGRADE.md",
+    "node_modules/highlight.js/VERSION_10_UPGRADE.md",
+    "node_modules/highlight.js/SUPPORTED_LANGUAGES.md",
+    "node_modules/highlight.js/SECURITY.md",
+    "node_modules/highlight.js/README.md",
+    "node_modules/highlight.js/CHANGES.md",
+    "node_modules/prismjs/README.md",
+    "node_modules/prismjs/CHANGELOG.md",
+    "node_modules/moment/README.md",
+    "node_modules/moment/CHANGELOG.md",
+    "node_modules/jsdom/README.md",
+    "node_modules/hexo/README.md",
+    "node_modules/resolve/SECURITY.md",
+    "node_modules/stylus/Readme.md",
+    "node_modules/stylus/Changelog.md",
+    "node_modules/hexo-cli/README.md",
+    "node_modules/hexo-cli/assets/themes/landscape/README.md",
+    "node_modules/async/README.md",
+    "node_modules/hexo-cli/assets/source/_posts/hello-world.md",
+    "node_modules/hexo-cli/assets/scaffolds/post.md",
+    "node_modules/hexo-cli/assets/scaffolds/page.md",
+    "node_modules/hexo-cli/assets/scaffolds/draft.md",
+    "node_modules/async/CHANGELOG.md",
+    "node_modules/nunjucks/README.md",
+    "node_modules/psl/browserstack-logo.svg",
+    "node_modules/hexo-cli/assets/themes/landscape/source/fancybox/helpers/fancybox_buttons.png",
+    "node_modules/hexo-cli/assets/themes/landscape/source/css/images/banner.jpg",
+    "node_modules/hexo-cli/assets/themes/landscape/source/css/fonts/fontawesome-webfont.svg",
+    "node_modules/hexo-cli/assets/themes/landscape/source/fancybox/fancybox_sprite@2x.png",
+    "node_modules/hexo-cli/assets/themes/landscape/source/fancybox/fancybox_sprite.png",
+    "node_modules/hexo-cli/assets/themes/landscape/source/fancybox/fancybox_overlay.png",
+    "node_modules/hexo-cli/assets/themes/landscape/source/fancybox/fancybox_loading@2x.gif",
+    "node_modules/hexo-cli/assets/themes/landscape/source/fancybox/fancybox_loading.gif",
+    "node_modules/hexo-cli/assets/themes/landscape/source/fancybox/blank.gif"
   ]
 }

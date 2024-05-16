@@ -75,8 +75,24 @@
 
   {#
   <script src="/js/asciinema-player.js"></script>
+  <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js"></script>
   #}
+
+  <script src="/js/coze.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/asciinema-player@2.6.1/resources/public/js/asciinema-player.min.js"></script>
+
+  <script>
+      new CozeWebSDK.WebChatClient({
+        config: {
+          bot_id: '7369590614474145808',
+        },
+        componentProps: {
+          icon: '/images/chat.svg',
+          title: 'coolcao的小站',
+        },
+      });
+  </script>
+
 
 </body>
 </html>

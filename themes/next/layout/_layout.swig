@@ -87,7 +87,7 @@
           bot_id: '7369590614474145808',
         },
         componentProps: {
-          icon: '/images/chat.svg',
+          icon: 'https://coolcao.com/images/chat.svg',
           title: 'coolcao的小站',
         },
       });

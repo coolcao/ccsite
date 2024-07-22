@@ -105,6 +105,26 @@ ffmpeg -f x11grab -video_size 1920x1080 -draw_mouse 0  -i :99 -stream_loop -1 -i
 - `-c:v libx264` 指定视频编码
 - `-c:a aac` 指定音频编码
 
+## 无间断推流
+上面命令只是简单的在终端使用ffmpeg启动了推流，但可能会由于各种原因，比如网络不畅，导致推流异常中断退出。解决这个问题，我们可以写一个shell脚本来解决，当推流退出时，我们重新启动推流即可。
+shell脚本如下：
+```shell
+#!/bin/bash
+
+# 推流地址
+RTMP_URL="rtmp://推流地址"
+# 输入音乐
+INPUT="/home/ubuntu/tuesday.mp3"
+
+while true; do
+  ffmpeg -f x11grab -video_size 1920x1080 -draw_mouse 0  -i :99 -stream_loop -1 -i $INPUT -c:v libx264 -c:a aac -preset ultrafast -qp 0 -shortest -f flv $RTMP_URL
+  if [ $? -ne 0 ]; then
+    echo "FFmpeg exited with an error. Restarting..."
+    sleep 3
+  fi
+done
+```
+
 
 
 

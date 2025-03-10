@@ -228,6 +228,30 @@ main().catch((error) => {
 
 上午中左侧部分为对话框的具体对话内容，右侧部分，是调用 MCP 服务器的过程，我们可以看到，它会以北京为参数，调用了 `getWeather` 服务，然后 `getWeather` 返回北京的天气信息，大模型再将这个返回的天气信息处理好格式，最终显示在对话框中。
 
+## MCP 服务调试工具
+
+MCP 服务调试工具是大模型提供的一个可视化界面，用于帮助用户测试和调试 MCP 服务。
+
+使用如下命令安装调试工具：
+
+```bash
+npm install -D @modelcontextprotocol/inspector
+```
+
+然后在 `package.json` 中添加调试脚本：
+
+```json
+"scripts": {
+    ...
+    "inspect": "mcp-inspector node build/index.js"
+  },
+```
+
+然后在命令行中运行 `npm run inspect` 即可打开调试界面:
+![202503101531634](https://img.coolcao.site/file/AgACAgUAAyEGAASKxe6JAAMmZ86VSmqaPRhJnRd3vUPO7NimeaUAAr_FMRtrMXBWiMpGPyvF21IBAAMCAAN3AAM2BA.png)
+
+这样我们就可以从调试界面中调用定义的 MCP 服务，并且可以查看其返回的结果了。
+
 ## 结语
 
 通过以上案例我们可以看到，我们只是定义了 MCP 服务的名称和描述，大模型会根据定义的名称和描述，自动的理解用户需求并调用相关的服务，而不用人为的去指定服务名。

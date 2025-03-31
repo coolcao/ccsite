@@ -80,7 +80,7 @@ categories:
 然后我们就可以与大模型进行对话，要求大模型来管理我们的待办事项了。
 
 下图是我的一个测试的对话记录：
-![TODO MCP](https://img.coolcao.site/file/AgACAgUAAyEGAASKxe6JAAMoZ-n7PA40eI0x2Asuy3TZWH7Bij0AAnHBMRvZCVFXoa7hVTMIAu8BAAMCAAN3AAM2BA.png)
+![202503311622300](https://s2.loli.net/2025/03/31/HSFq8R2W7pby5fE.png)
 
 从截图中可以看出，有了 MCP 服务的加持，大模型可以轻松的帮我们管理待办事项， 这也展示了 MCP 服务的强大功能。
 
